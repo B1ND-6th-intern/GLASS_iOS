@@ -9,21 +9,36 @@
 /* Begin PBXBuildFile section */
 		808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A42715D547003F88ED /* AppDelegate.swift */; };
 		808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A62715D547003F88ED /* SceneDelegate.swift */; };
-		808EA1A92715D547003F88ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A82715D547003F88ED /* ViewController.swift */; };
-		808EA1AC2715D547003F88ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1AA2715D547003F88ED /* Main.storyboard */; };
+		808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A82715D547003F88ED /* FeedViewController.swift */; };
 		808EA1AE2715D54A003F88ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1AD2715D54A003F88ED /* Assets.xcassets */; };
 		808EA1B12715D54A003F88ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1AF2715D54A003F88ED /* LaunchScreen.storyboard */; };
+		808EA1BA271653B3003F88ED /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 808EA1B9271653B3003F88ED /* SnapKit */; };
+		808EA1BD27167202003F88ED /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1BC27167202003F88ED /* FeedTableViewCell.swift */; };
+		808EA1BF271684B1003F88ED /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1BE271684B1003F88ED /* UploadViewController.swift */; };
+		808EA1C227168505003F88ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C127168505003F88ED /* ProfileViewController.swift */; };
+		808EA1C427168527003F88ED /* ProfileDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C327168527003F88ED /* ProfileDataView.swift */; };
+		808EA1C62716857B003F88ED /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C52716857B003F88ED /* ProfileCollectionViewCell.swift */; };
+		808EA1C827168595003F88ED /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C727168595003F88ED /* TabBarController.swift */; };
+		808EA1CA271685C5003F88ED /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C9271685C5003F88ED /* UIButton+.swift */; };
+		808EA1CE271687C7003F88ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1CD271687C7003F88ED /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		808EA1A12715D547003F88ED /* GLASS_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLASS_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EA1A42715D547003F88ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EA1A62715D547003F88ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		808EA1A82715D547003F88ED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		808EA1AB2715D547003F88ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		808EA1A82715D547003F88ED /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		808EA1AD2715D54A003F88ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		808EA1B02715D54A003F88ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		808EA1B22715D54A003F88ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		808EA1BC27167202003F88ED /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		808EA1BE271684B1003F88ED /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		808EA1C127168505003F88ED /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		808EA1C327168527003F88ED /* ProfileDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataView.swift; sourceTree = "<group>"; };
+		808EA1C52716857B003F88ED /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		808EA1C727168595003F88ED /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		808EA1C9271685C5003F88ED /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		808EA1CD271687C7003F88ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808EA1BA271653B3003F88ED /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +72,54 @@
 		808EA1A32715D547003F88ED /* GLASS_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				808EA1C9271685C5003F88ED /* UIButton+.swift */,
 				808EA1A42715D547003F88ED /* AppDelegate.swift */,
 				808EA1A62715D547003F88ED /* SceneDelegate.swift */,
-				808EA1A82715D547003F88ED /* ViewController.swift */,
-				808EA1AA2715D547003F88ED /* Main.storyboard */,
+				808EA1CC2716877B003F88ED /* SignUp */,
+				808EA1CB2716873D003F88ED /* SignIn */,
+				808EA1BB271671D0003F88ED /* Feed */,
+				808EA1C0271684D7003F88ED /* Profile */,
+				808EA1C727168595003F88ED /* TabBarController.swift */,
 				808EA1AD2715D54A003F88ED /* Assets.xcassets */,
 				808EA1AF2715D54A003F88ED /* LaunchScreen.storyboard */,
 				808EA1B22715D54A003F88ED /* Info.plist */,
 			);
 			path = GLASS_iOS;
+			sourceTree = "<group>";
+		};
+		808EA1BB271671D0003F88ED /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				808EA1A82715D547003F88ED /* FeedViewController.swift */,
+				808EA1BC27167202003F88ED /* FeedTableViewCell.swift */,
+				808EA1BE271684B1003F88ED /* UploadViewController.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		808EA1C0271684D7003F88ED /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				808EA1C127168505003F88ED /* ProfileViewController.swift */,
+				808EA1C327168527003F88ED /* ProfileDataView.swift */,
+				808EA1C52716857B003F88ED /* ProfileCollectionViewCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		808EA1CB2716873D003F88ED /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				808EA1CD271687C7003F88ED /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		808EA1CC2716877B003F88ED /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +138,9 @@
 			dependencies = (
 			);
 			name = GLASS_iOS;
+			packageProductDependencies = (
+				808EA1B9271653B3003F88ED /* SnapKit */,
+			);
 			productName = GLASS_iOS;
 			productReference = 808EA1A12715D547003F88ED /* GLASS_iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +169,9 @@
 				Base,
 			);
 			mainGroup = 808EA1982715D547003F88ED;
+			packageReferences = (
+				808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 808EA1A22715D547003F88ED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +188,6 @@
 			files = (
 				808EA1B12715D54A003F88ED /* LaunchScreen.storyboard in Resources */,
 				808EA1AE2715D54A003F88ED /* Assets.xcassets in Resources */,
-				808EA1AC2715D547003F88ED /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +198,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				808EA1A92715D547003F88ED /* ViewController.swift in Sources */,
+				808EA1CE271687C7003F88ED /* SignInViewController.swift in Sources */,
+				808EA1C227168505003F88ED /* ProfileViewController.swift in Sources */,
+				808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */,
+				808EA1C62716857B003F88ED /* ProfileCollectionViewCell.swift in Sources */,
+				808EA1C827168595003F88ED /* TabBarController.swift in Sources */,
+				808EA1C427168527003F88ED /* ProfileDataView.swift in Sources */,
+				808EA1BF271684B1003F88ED /* UploadViewController.swift in Sources */,
+				808EA1BD27167202003F88ED /* FeedTableViewCell.swift in Sources */,
 				808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */,
 				808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */,
+				808EA1CA271685C5003F88ED /* UIButton+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		808EA1AA2715D547003F88ED /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				808EA1AB2715D547003F88ED /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		808EA1AF2715D54A003F88ED /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +354,6 @@
 				INFOPLIST_FILE = GLASS_iOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +381,6 @@
 				INFOPLIST_FILE = GLASS_iOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -360,6 +418,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		808EA1B9271653B3003F88ED /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 808EA1992715D547003F88ED /* Project object */;
 }
