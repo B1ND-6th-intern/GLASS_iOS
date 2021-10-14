@@ -11,7 +11,6 @@
 		808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A62715D547003F88ED /* SceneDelegate.swift */; };
 		808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A82715D547003F88ED /* FeedViewController.swift */; };
 		808EA1AE2715D54A003F88ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1AD2715D54A003F88ED /* Assets.xcassets */; };
-		808EA1B12715D54A003F88ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1AF2715D54A003F88ED /* LaunchScreen.storyboard */; };
 		808EA1BA271653B3003F88ED /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 808EA1B9271653B3003F88ED /* SnapKit */; };
 		808EA1BD27167202003F88ED /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1BC27167202003F88ED /* FeedTableViewCell.swift */; };
 		808EA1BF271684B1003F88ED /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1BE271684B1003F88ED /* UploadViewController.swift */; };
@@ -21,6 +20,7 @@
 		808EA1C827168595003F88ED /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C727168595003F88ED /* TabBarController.swift */; };
 		808EA1CA271685C5003F88ED /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1C9271685C5003F88ED /* UIButton+.swift */; };
 		808EA1CE271687C7003F88ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1CD271687C7003F88ED /* SignInViewController.swift */; };
+		808EA1D02716BA29003F88ED /* LunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,6 @@
 		808EA1A62715D547003F88ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		808EA1A82715D547003F88ED /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		808EA1AD2715D54A003F88ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		808EA1B02715D54A003F88ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		808EA1B22715D54A003F88ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		808EA1BC27167202003F88ED /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		808EA1BE271684B1003F88ED /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +38,7 @@
 		808EA1C727168595003F88ED /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		808EA1C9271685C5003F88ED /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		808EA1CD271687C7003F88ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +81,8 @@
 				808EA1C0271684D7003F88ED /* Profile */,
 				808EA1C727168595003F88ED /* TabBarController.swift */,
 				808EA1AD2715D54A003F88ED /* Assets.xcassets */,
-				808EA1AF2715D54A003F88ED /* LaunchScreen.storyboard */,
 				808EA1B22715D54A003F88ED /* Info.plist */,
+				808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */,
 			);
 			path = GLASS_iOS;
 			sourceTree = "<group>";
@@ -186,7 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				808EA1B12715D54A003F88ED /* LaunchScreen.storyboard in Resources */,
+				808EA1D02716BA29003F88ED /* LunchScreen.storyboard in Resources */,
 				808EA1AE2715D54A003F88ED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,17 +213,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		808EA1AF2715D54A003F88ED /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				808EA1B02715D54A003F88ED /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		808EA1B32715D54A003F88ED /* Debug */ = {
