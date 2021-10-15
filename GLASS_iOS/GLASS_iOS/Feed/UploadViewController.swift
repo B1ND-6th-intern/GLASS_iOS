@@ -11,7 +11,6 @@ import UIKit
 final class UploadViewContoller: UIViewController {
     
     private let uploadImage: UIImage
-    
     private let imageView = UIImageView()
     
     private lazy var textView: UITextView = {
