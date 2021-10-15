@@ -22,7 +22,7 @@ class PnTSignUpViewController: UIViewController{
     
     private lazy var emailTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "email"
+        textfield.placeholder = "이메일"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -33,7 +33,7 @@ class PnTSignUpViewController: UIViewController{
     
     private lazy var passWordTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "password"
+        textfield.placeholder = "비밀번호"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -44,7 +44,7 @@ class PnTSignUpViewController: UIViewController{
     
     private lazy var passWordCheckTextfield: UITextField = {
        let textfield = UITextField()
-        textfield.placeholder = "check password"
+        textfield.placeholder = "비밀번호 재입력"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -55,7 +55,7 @@ class PnTSignUpViewController: UIViewController{
     
     private lazy var nameTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "name"
+        textfield.placeholder = "이름"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -99,6 +99,9 @@ class PnTSignUpViewController: UIViewController{
         
     }
     
+}
+
+private extension PnTSignUpViewController{
     func setup() {
         
         let agreeImformationStackView = UIStackView(arrangedSubviews: [agreeInformationLabel, agreeInformationSwitch])
@@ -153,7 +156,7 @@ class PnTSignUpViewController: UIViewController{
         }
         
         agreeImformationStackView.snp.makeConstraints{
-            $0.top.equalTo(nameTextfield.snp.bottom).offset(120)
+            $0.top.equalTo(nameTextfield.snp.bottom).offset(135)
             $0.leading.equalTo(nameTextfield.snp.leading)
         }
         
@@ -168,5 +171,5 @@ class PnTSignUpViewController: UIViewController{
         
     }
     
-}
 
+}

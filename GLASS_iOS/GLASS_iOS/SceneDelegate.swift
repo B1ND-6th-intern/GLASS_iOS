@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .systemBackground
-        window?.rootViewController = tabBarcontroller()
+        window?.rootViewController = PnTSignUpViewController()
         window?.tintColor = .label
         window?.makeKeyAndVisible()
     }

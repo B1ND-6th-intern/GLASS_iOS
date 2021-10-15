@@ -22,7 +22,7 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var emailTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "email"
+        textfield.placeholder = "이메일"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -33,7 +33,7 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var passWordTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "password"
+        textfield.placeholder = "비밀번호"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -44,7 +44,7 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var passWordCheckTextfield: UITextField = {
        let textfield = UITextField()
-        textfield.placeholder = "check password"
+        textfield.placeholder = "비밀번호 확인"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -55,7 +55,7 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var nameTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "name"
+        textfield.placeholder = "이름"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -66,8 +66,9 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var gradeTextfield: UITextField = {
        let textfield = UITextField()
-        textfield.placeholder = "grade"
+        textfield.placeholder = "학년"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
+        textfield.textAlignment = .center
         textfield.backgroundColor  = lightGray
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -78,8 +79,9 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var classTextfield: UITextField = {
        let textfield = UITextField()
-        textfield.placeholder = "class"
+        textfield.placeholder = "반"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
+        textfield.textAlignment = .center
         textfield.backgroundColor = lightGray
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -90,8 +92,9 @@ class StudentsSignUpViewController: UIViewController{
     
     private lazy var numberTextfield: UITextField = {
        let textfield = UITextField()
-        textfield.placeholder = "number"
+        textfield.placeholder = "번호"
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
+        textfield.textAlignment = .center
         textfield.backgroundColor  = lightGray
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
@@ -134,7 +137,9 @@ class StudentsSignUpViewController: UIViewController{
         setup()
         
     }
-    
+}
+
+private extension StudentsSignUpViewController{
     func setup() {
         
         let imformationStackView = UIStackView(arrangedSubviews: [gradeTextfield, classTextfield, numberTextfield])

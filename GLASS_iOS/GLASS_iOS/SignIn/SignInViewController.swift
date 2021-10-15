@@ -78,7 +78,6 @@ class SignInViewController: UIViewController {
         
     }
     
-    
     func setup(){
         
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passWordTextField])
