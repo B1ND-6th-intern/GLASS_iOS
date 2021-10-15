@@ -101,6 +101,7 @@ class SignInViewController: UIViewController {
         ].forEach{ self.view.addSubview($0) }
         
         let logoOffset: CGFloat = 90.0
+        
         GlassImageView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(235)
             $0.leading.equalToSuperview().offset(logoOffset)

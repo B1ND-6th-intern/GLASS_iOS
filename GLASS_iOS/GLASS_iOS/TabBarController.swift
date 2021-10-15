@@ -18,6 +18,14 @@ final class tabBarcontroller: UITabBarController {
             selectedImage: UIImage(systemName: "house.fill")
         )
         
+        let searchViewController = UINavigationController(rootViewController: SearchViewController())
+        searchViewController.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(systemName: "magnifyingglass.circle"),
+            selectedImage: UIImage(systemName: "magnifyingglass.circle.fill")
+        )
+        
+        
         let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem = UITabBarItem(
             title: nil,
@@ -25,6 +33,6 @@ final class tabBarcontroller: UITabBarController {
             selectedImage: UIImage(systemName: "person.fill")
         )
 
-        viewControllers = [feedViewController, profileViewController]
+        viewControllers = [feedViewController, searchViewController, profileViewController]
     }
 }

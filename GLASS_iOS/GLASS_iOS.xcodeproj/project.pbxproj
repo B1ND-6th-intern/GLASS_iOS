@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		80761DD027194A300057FF51 /* SelectJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DCF27194A300057FF51 /* SelectJobViewController.swift */; };
 		80761DD227194AC80057FF51 /* PnTSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD127194AC80057FF51 /* PnTSignUpViewController.swift */; };
+		80761DD527197DA90057FF51 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD427197DA90057FF51 /* SearchViewController.swift */; };
 		808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A42715D547003F88ED /* AppDelegate.swift */; };
 		808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A62715D547003F88ED /* SceneDelegate.swift */; };
 		808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A82715D547003F88ED /* FeedViewController.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		80761DCF27194A300057FF51 /* SelectJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectJobViewController.swift; sourceTree = "<group>"; };
 		80761DD127194AC80057FF51 /* PnTSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PnTSignUpViewController.swift; sourceTree = "<group>"; };
+		80761DD427197DA90057FF51 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		808EA1A12715D547003F88ED /* GLASS_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLASS_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EA1A42715D547003F88ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EA1A62715D547003F88ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80761DD327197D530057FF51 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				80761DD427197DA90057FF51 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		808EA1982715D547003F88ED = {
 			isa = PBXGroup;
 			children = (
@@ -85,10 +95,11 @@
 				808EA1CB2716873D003F88ED /* SignIn */,
 				808EA1BB271671D0003F88ED /* Feed */,
 				808EA1C0271684D7003F88ED /* Profile */,
+				80761DD327197D530057FF51 /* Search */,
+				808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */,
 				808EA1C727168595003F88ED /* TabBarController.swift */,
 				808EA1AD2715D54A003F88ED /* Assets.xcassets */,
 				808EA1B22715D54A003F88ED /* Info.plist */,
-				808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */,
 			);
 			path = GLASS_iOS;
 			sourceTree = "<group>";
@@ -207,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80761DD527197DA90057FF51 /* SearchViewController.swift in Sources */,
 				808EA1CE271687C7003F88ED /* SignInViewController.swift in Sources */,
 				808EA1C227168505003F88ED /* ProfileViewController.swift in Sources */,
 				808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */,
