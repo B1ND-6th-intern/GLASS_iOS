@@ -19,7 +19,7 @@ class SignInViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var idTextField: UITextField = {
+    private lazy var emailTextField: UITextField = {
         let textfield = UITextField()
         textfield.font = .systemFont(ofSize: 15.0, weight: .medium)
         textfield.placeholder = "이메일"
@@ -81,7 +81,7 @@ class SignInViewController: UIViewController {
     
     func setup(){
         
-        let stackView = UIStackView(arrangedSubviews: [idTextField, passWordTextField])
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passWordTextField])
         stackView.axis = .vertical
         stackView.spacing = 10.0
         stackView.distribution = .fillEqually
@@ -104,13 +104,12 @@ class SignInViewController: UIViewController {
         GlassImageView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(235)
             $0.leading.equalToSuperview().offset(logoOffset)
-            $0.trailing.equalToSuperview().offset(-logoOffset)
-            $0.bottom.equalTo(idTextField.snp.top).offset(-80)
+            $0.trailing.equalToSuperview().inset(logoOffset)
+            $0.bottom.equalTo(emailTextField.snp.top).offset(-80)
         }
         
-        self.idTextField.snp.makeConstraints {
+        self.emailTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-//            $0.width.equalTo(100)
         }
         self.passWordTextField.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
@@ -127,8 +126,6 @@ class SignInViewController: UIViewController {
             $0.leading.equalToSuperview().offset(100)
             $0.trailing.equalToSuperview().offset(-100)
         }
-        
-        let signUpStackViewOffset = 50
 
         signUpStackView.snp.makeConstraints{
             $0.centerX.equalToSuperview()
