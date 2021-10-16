@@ -77,6 +77,9 @@ class SignInViewController: UIViewController {
         setup()
         
     }
+}
+
+private extension SignInViewController{
     
     func setup(){
         
@@ -132,5 +135,4 @@ class SignInViewController: UIViewController {
             $0.bottom.equalToSuperview().inset(32)
         }
     }
-    
 }
