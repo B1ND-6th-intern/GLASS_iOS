@@ -21,24 +21,24 @@ class SelectJobViewController: UIViewController {
     
     private lazy var studentButton: UIButton = {
         let button = UIButton()
-//        button.setImage(systemName: )
-        button.backgroundColor = .black
+        button.setImage(#imageLiteral(resourceName: "StudentImage"), for: .normal)
+//        button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 5.0
         
         return button
     }()
     private lazy var parentsButton: UIButton = {
         let button = UIButton()
-//        button.setImage(systemName: )
-        button.backgroundColor = .black
+        button.setImage(#imageLiteral(resourceName: "ParentsImage"), for: .normal)
+//        button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 5.0
         
         return button
     }()
     private lazy var teacherButton: UIButton = {
         let button = UIButton()
-//        button.setImage(systemName: )
-        button.backgroundColor = .black
+        button.setImage(#imageLiteral(resourceName: "TeacherImage"), for: .normal)
+//        button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 5.0
         
         return button
@@ -88,7 +88,7 @@ private extension SelectJobViewController{
         let BtnStackView = UIStackView(arrangedSubviews: [studentButton, parentsButton,teacherButton])
         BtnStackView.axis = .horizontal
         BtnStackView.distribution = .fillEqually
-        BtnStackView.spacing = 3.0
+        BtnStackView.spacing = 5
         
         [
             GLASSImageView,
@@ -99,10 +99,10 @@ private extension SelectJobViewController{
         ] .forEach{ self.view.addSubview($0) }
         
         GLASSImageView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(250)
+            $0.top.equalToSuperview().offset(240)
             $0.leading.equalToSuperview().offset(90)
             $0.trailing.equalToSuperview().inset(90)
-            $0.bottom.equalToSuperview().inset(510)
+            $0.bottom.equalToSuperview().inset(520)
         }
         
 //        blueHalfView.snp.makeConstraints{
@@ -115,7 +115,7 @@ private extension SelectJobViewController{
             $0.top.equalTo(GLASSImageView.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().inset(30)
-            $0.bottom.equalToSuperview().inset(340)
+            $0.bottom.equalToSuperview().inset(330)
         }
         
         ractangle.snp.makeConstraints {
