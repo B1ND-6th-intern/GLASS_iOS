@@ -74,6 +74,7 @@ extension FeedViewController: UIImagePickerControllerDelegate, UINavigationContr
 }
 
 private extension FeedViewController {
+    
     func setupNavigationBar() {
         navigationItem.title  = "GLASS"
         

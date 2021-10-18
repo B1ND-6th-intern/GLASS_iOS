@@ -13,22 +13,22 @@ final class tabBarcontroller: UITabBarController {
         
         let feedViewController = UINavigationController(rootViewController: FeedViewController())
         feedViewController.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "홈",
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill")
         )
         
-        let searchViewController = UINavigationController(rootViewController: SearchViewController())
+        let searchViewController = UINavigationController(rootViewController: PopularViewController())
         searchViewController.tabBarItem = UITabBarItem(
-            title: nil,
-            image: UIImage(systemName: "magnifyingglass.circle"),
-            selectedImage: UIImage(systemName: "magnifyingglass.circle.fill")
+            title: "인기글",
+            image: UIImage(systemName: "flame"),
+            selectedImage: UIImage(systemName: "flame.fill")
         )
         
         
         let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         profileViewController.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "프로필",
             image: UIImage(systemName: "person"),
             selectedImage: UIImage(systemName: "person.fill")
         )
