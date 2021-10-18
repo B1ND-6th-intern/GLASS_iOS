@@ -145,7 +145,12 @@ private extension ProfileViewController{
         dataStackView.distribution = .fillEqually
         
         [
-            profileImageView, dataStackView, nameLabel, descriptionLabel, buttonStackView, collectionView
+            profileImageView,
+            dataStackView,
+            nameLabel,
+            descriptionLabel,
+            buttonStackView,
+            collectionView
         ].forEach{ view.addSubview($0) }
         
         let inset: CGFloat = 16.0
