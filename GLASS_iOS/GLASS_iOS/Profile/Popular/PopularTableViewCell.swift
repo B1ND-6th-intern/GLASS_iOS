@@ -28,7 +28,7 @@ final class PopularTableViewCell: UITableViewCell{
     private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
 //        imageView.image = 서버에서 받은 사진
-        postImageView.backgroundColor = .tertiaryLabel
+        imageView.backgroundColor = .tertiaryLabel
         
         return imageView
     }()
@@ -69,6 +69,7 @@ final class PopularTableViewCell: UITableViewCell{
         
         likeButton.snp.makeConstraints{
             $0.top.equalToSuperview().offset(likeButtonSet)
+            $0.bottom.equalToSuperview().offset(-likeButtonSet)
             $0.leading.equalToSuperview().offset(likeButtonSet)
         }
         

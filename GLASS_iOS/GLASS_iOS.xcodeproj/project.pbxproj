@@ -11,6 +11,7 @@
 		80761DD227194AC80057FF51 /* PnTSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD127194AC80057FF51 /* PnTSignUpViewController.swift */; };
 		80761DD7271D90DA0057FF51 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD6271D90DA0057FF51 /* PopularViewController.swift */; };
 		80761DDA271D93300057FF51 /* PopularTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD9271D93300057FF51 /* PopularTableViewCell.swift */; };
+		80761DDC271E866F0057FF51 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DDB271E866F0057FF51 /* EditProfileViewController.swift */; };
 		808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A42715D547003F88ED /* AppDelegate.swift */; };
 		808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A62715D547003F88ED /* SceneDelegate.swift */; };
 		808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A82715D547003F88ED /* FeedViewController.swift */; };
@@ -33,6 +34,7 @@
 		80761DD127194AC80057FF51 /* PnTSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PnTSignUpViewController.swift; sourceTree = "<group>"; };
 		80761DD6271D90DA0057FF51 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		80761DD9271D93300057FF51 /* PopularTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTableViewCell.swift; sourceTree = "<group>"; };
+		80761DDB271E866F0057FF51 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		808EA1A12715D547003F88ED /* GLASS_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLASS_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808EA1A42715D547003F88ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EA1A62715D547003F88ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				808EA1C127168505003F88ED /* ProfileViewController.swift */,
 				808EA1C327168527003F88ED /* ProfileDataView.swift */,
 				808EA1C52716857B003F88ED /* ProfileCollectionViewCell.swift */,
+				80761DDB271E866F0057FF51 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				808EA1D2271874A3003F88ED /* StudentsSignUpViewController.swift in Sources */,
 				80761DD227194AC80057FF51 /* PnTSignUpViewController.swift in Sources */,
 				808EA1BF271684B1003F88ED /* UploadViewController.swift in Sources */,
+				80761DDC271E866F0057FF51 /* EditProfileViewController.swift in Sources */,
 				808EA1BD27167202003F88ED /* FeedTableViewCell.swift in Sources */,
 				80761DDA271D93300057FF51 /* PopularTableViewCell.swift in Sources */,
 				808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */,

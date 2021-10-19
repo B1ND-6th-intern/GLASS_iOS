@@ -23,11 +23,14 @@ class PopularViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTableView()
+        
     }
     
 }
 
-extension PopularViewController: UITableViewDataSource{
+extension PopularViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }

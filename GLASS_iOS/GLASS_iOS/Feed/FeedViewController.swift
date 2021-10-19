@@ -35,7 +35,7 @@ class FeedViewController: UIViewController {
         
         setupNavigationBar()
         setupTableView()
-        
+
     }
 }
 
@@ -84,6 +84,18 @@ private extension FeedViewController {
             target: self,
             action: #selector(didTabUploadButton)
         )
+        
+        
+        let logobutton = UIBarButtonItem(
+            image: UIImage(named: "GLASS_Small"),
+            style: .plain,
+            target: nil,
+            action: nil
+        )
+        logobutton.tintColor = UIColor(named: "Color")
+        logobutton.width = 20
+        
+        navigationItem.leftBarButtonItem = logobutton
         navigationItem.rightBarButtonItem = uploadButton
     }
     
