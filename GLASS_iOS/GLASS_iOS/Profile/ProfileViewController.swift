@@ -35,21 +35,10 @@ final class ProfileViewController: UIViewController {
         
         return label
     }()
-    
-    private lazy var followButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("팔로우", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 3.0
-        
-        return button
-    }()
 
-    private lazy var messageButton: UIButton = {
+    private lazy var EditProfileButton: UIButton = {
         let button = UIButton()
-        button.setTitle("메세지", for: .normal)
+        button.setTitle("프로필 변경", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
         button.backgroundColor = .white
@@ -60,9 +49,8 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
-    private let photoDataView = ProfileDataView(title: "게시물", count: 50)
-    private let followerDataView = ProfileDataView(title: "팔로워", count: 999)
-    private let followingDataView = ProfileDataView(title: "팔로잉", count: 10)
+    private let studentInformationDataView = ProfileDataView(title: "학반번호", count: 1206)
+    private let photoDataView = ProfileDataView(title: "게시물", count: 10)
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -126,7 +114,6 @@ private extension ProfileViewController{
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         [
-            UIAlertAction(title: "회원 정보 변경", style: .default),
             UIAlertAction(title: "탈퇴하기", style: .destructive),
             UIAlertAction(title: "닫기", style: .cancel)
         ].forEach { actionSheet.addAction($0) }
@@ -135,12 +122,15 @@ private extension ProfileViewController{
 
     }
     
-    func setUpLayout() {
-        let buttonStackView = UIStackView(arrangedSubviews: [followButton, messageButton])
-        buttonStackView.spacing = 4.0
-        buttonStackView.distribution = .fillEqually
+    @objc func didTabEditProfileButton(){
+    
+        self.navigationController?.popViewController(animated: true)
         
-        let dataStackView = UIStackView(arrangedSubviews: [photoDataView, followerDataView, followingDataView])
+    }
+    
+    func setUpLayout() {
+        
+        let dataStackView = UIStackView(arrangedSubviews: [ studentInformationDataView, photoDataView])
         dataStackView.spacing = 4.0
         dataStackView.distribution = .fillEqually
         
@@ -149,7 +139,7 @@ private extension ProfileViewController{
             dataStackView,
             nameLabel,
             descriptionLabel,
-            buttonStackView,
+            EditProfileButton,
             collectionView
         ].forEach{ view.addSubview($0) }
         
@@ -180,7 +170,7 @@ private extension ProfileViewController{
             $0.trailing.equalTo(nameLabel.snp.trailing)
         }
         
-        buttonStackView.snp.makeConstraints{
+        EditProfileButton.snp.makeConstraints{
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(12.0)
             $0.leading.equalTo(nameLabel.snp.leading)
             $0.trailing.equalTo(nameLabel.snp.trailing)
@@ -189,7 +179,7 @@ private extension ProfileViewController{
         collectionView.snp.makeConstraints{
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.top.equalTo(buttonStackView.snp.bottom).offset(16.0)
+            $0.top.equalTo(EditProfileButton.snp.bottom).offset(16.0)
             $0.bottom.equalToSuperview()
         }
         
