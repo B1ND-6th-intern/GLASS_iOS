@@ -45,6 +45,7 @@ final class ProfileViewController: UIViewController {
         button.layer.cornerRadius = 3.0
         button.layer.borderWidth = 0.5
         button.layer.borderColor = UIColor.tertiaryLabel.cgColor
+        button.addTarget(self, action: #selector(didTabEditProfileButton), for: .touchUpInside)
         
         return button
     }()
@@ -123,9 +124,8 @@ private extension ProfileViewController{
     }
     
     @objc func didTabEditProfileButton(){
-    
-        self.navigationController?.popViewController(animated: true)
-        
+        let editProfile = EditProfileViewController()
+        present(editProfile, animated: true)
     }
     
     func setUpLayout() {
