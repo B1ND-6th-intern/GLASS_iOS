@@ -30,8 +30,6 @@ final class PopularTableViewCell: UITableViewCell{
         let imageView = UIImageView()
 //        imageView.image = 서버에서 받은 사진
         imageView.backgroundColor = .tertiaryLabel
-        imageView.image = UIImage(named: "ExImage")
-        imageView.layer.borderColor = UIColor.quaternaryLabel.cgColor
         
         return imageView
     }()

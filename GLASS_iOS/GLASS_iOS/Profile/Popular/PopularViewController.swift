@@ -24,6 +24,7 @@ class PopularViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBarItem()
         setupTableView()
         
     }
@@ -44,7 +45,13 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+
+
 private extension PopularViewController{
+    
+    func setNavigationBarItem() {
+        navigationItem.title = "인기글"
+    }
     
     func setupTableView(){
         view.addSubview(popularTableView)

@@ -115,7 +115,7 @@ private extension ProfileViewController{
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         [
-            UIAlertAction(title: "탈퇴하기", style: .destructive),
+            UIAlertAction(title: "로그아웃", style: .destructive),
             UIAlertAction(title: "닫기", style: .cancel)
         ].forEach { actionSheet.addAction($0) }
         

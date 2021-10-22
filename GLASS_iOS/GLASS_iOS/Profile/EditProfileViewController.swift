@@ -72,6 +72,7 @@ class EditProfileViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .medium)
         button.backgroundColor = UIColor(named: "Color")
         button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(didTabDoneButton), for: .touchUpInside)
         
         return button
     }()
@@ -84,6 +85,13 @@ class EditProfileViewController: UIViewController {
 }
 
 private extension EditProfileViewController {
+    
+    @objc func didTabDoneButton(){
+        self.dismiss(animated: true)
+        
+        //서버로 값 보내주기
+        
+    }
     
     func setup(){
         
