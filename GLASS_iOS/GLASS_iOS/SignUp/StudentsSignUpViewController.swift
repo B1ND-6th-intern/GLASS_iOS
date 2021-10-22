@@ -16,6 +16,7 @@ class StudentsSignUpViewController: UIViewController{
     private lazy var GLASSLogoImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "GLASSLogo")
+        imageview.tintColor = UIColor(named: "Color")
         
         return imageview
     }()
@@ -127,6 +128,7 @@ class StudentsSignUpViewController: UIViewController{
         button.titleLabel?.textColor = .white
         button.layer.cornerRadius = 5.0
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(didTabSignUpButton), for: .touchUpInside)
         
         return button
     }()
@@ -140,6 +142,12 @@ class StudentsSignUpViewController: UIViewController{
 }
 
 private extension StudentsSignUpViewController{
+    
+    @objc func didTabSignUpButton(){
+        let vc = GetEmailViewContoller()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func setup() {
         
         let imformationStackView = UIStackView(arrangedSubviews: [gradeTextfield, classTextfield, numberTextfield])

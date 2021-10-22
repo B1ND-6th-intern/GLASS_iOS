@@ -15,6 +15,7 @@ class SignInViewController: UIViewController {
     private lazy var GlassImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "GLASSLogo")
+        imageView.tintColor = UIColor(named: "Color")
         
         return imageView
     }()
@@ -67,6 +68,7 @@ class SignInViewController: UIViewController {
         button.backgroundColor = nil
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .medium)
         button.setTitleColor(UIColor(named: "Color"), for: .normal)
+        button.addTarget(self, action: #selector(didTabmoveToSignUpButton), for: .touchUpInside)
         
         return button
     }()
@@ -77,9 +79,16 @@ class SignInViewController: UIViewController {
         setup()
         
     }
+    
 }
 
 private extension SignInViewController{
+    
+    @objc func didTabmoveToSignUpButton() {
+        let rootVC = SelectJobViewController()
+        navigationController?.pushViewController(rootVC, animated: true)
+        
+    }
     
     func setup(){
         

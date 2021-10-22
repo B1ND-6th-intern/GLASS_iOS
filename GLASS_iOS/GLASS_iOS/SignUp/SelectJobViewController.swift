@@ -15,6 +15,7 @@ class SelectJobViewController: UIViewController {
     private lazy var GLASSImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "GLASSLogo")
+        imageView.tintColor = UIColor(named: "Color")
         
         return imageView
     }()
@@ -22,24 +23,26 @@ class SelectJobViewController: UIViewController {
     private lazy var studentButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "StudentImage"), for: .normal)
-//        button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(didTabstudentButton), for: .touchUpInside)
         
         return button
     }()
+    
     private lazy var parentsButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "ParentsImage"), for: .normal)
-//        button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(didTabNotStudentButton), for: .touchUpInside)
         
         return button
     }()
+    
     private lazy var teacherButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "TeacherImage"), for: .normal)
-//        button.layer.borderColor = UIColor.black.cgColor
         button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(didTabNotStudentButton), for: .touchUpInside)
         
         return button
     }()
@@ -83,7 +86,23 @@ class Ractangle: UIView {
 
 private extension SelectJobViewController{
     
+    @objc func didTabstudentButton(){
+        let vc = StudentsSignUpViewController()
+        vc.view.backgroundColor = .systemBackground
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    @objc func didTabNotStudentButton(){
+        let vc = PnTSignUpViewController()
+        vc.view.backgroundColor = .systemBackground
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
     func setup() {
+        
+        self.view.backgroundColor = .systemBackground
         
         let BtnStackView = UIStackView(arrangedSubviews: [studentButton, parentsButton,teacherButton])
         BtnStackView.axis = .horizontal

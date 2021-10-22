@@ -16,6 +16,7 @@ class PnTSignUpViewController: UIViewController{
     private lazy var GLASSLogoImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "GLASSLogo")
+        imageview.tintColor = UIColor(named: "Color")
         
         return imageview
     }()
@@ -88,6 +89,7 @@ class PnTSignUpViewController: UIViewController{
         button.titleLabel?.textColor = .white
         button.layer.cornerRadius = 5.0
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(didTabSignUpButton), for: .touchUpInside)
         
         return button
     }()
@@ -102,6 +104,12 @@ class PnTSignUpViewController: UIViewController{
 }
 
 private extension PnTSignUpViewController{
+    
+    @objc func didTabSignUpButton(){
+        let vc = GetEmailViewContoller()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func setup() {
         
         let agreeImformationStackView = UIStackView(arrangedSubviews: [agreeInformationLabel, agreeInformationSwitch])
