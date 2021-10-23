@@ -33,6 +33,16 @@ final class UploadViewContoller: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var hashtagTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.textColor = .systemBlue
+        textfield.placeholder = "# 를 입력하세요! (해쉬테그는 ','로 구분됩니다.)"
+        textfield.font = .systemFont(ofSize: 13.0, weight: .medium)
+        textfield.borderStyle = .none
+        
+        return textfield
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,7 +91,7 @@ private extension UploadViewContoller {
     }
 
     func setupLayout(){
-        [imageView, textView].forEach{ view.addSubview($0) }
+        [imageView, textView, hashtagTextField].forEach{ view.addSubview($0) }
         
         let imageViewInset: CGFloat = 16.0
         
@@ -97,6 +107,12 @@ private extension UploadViewContoller {
             $0.leading.equalTo(imageView.snp.trailing).offset(imageViewInset)
             $0.trailing.equalToSuperview().inset(imageViewInset)
             $0.bottom.equalTo(imageView.snp.bottom)
+        }
+        
+        hashtagTextField.snp.makeConstraints{
+            $0.top.equalTo(imageView.snp.bottom).offset(imageViewInset)
+            $0.leading.equalTo(imageView.snp.leading)
+            $0.trailing.equalTo(textView.snp.trailing)
         }
     }
     
