@@ -103,7 +103,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             selectImage = originalImage
         }
         
-        ProfileImageView.image = selectImage
+        self.ProfileImageView.image = selectImage
         
         picker.dismiss(animated: true)
     }
