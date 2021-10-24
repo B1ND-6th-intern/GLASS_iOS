@@ -124,7 +124,7 @@ private extension ProfileViewController{
     }
     
     @objc func didTabEditProfileButton(){
-        let editProfile = EditProfileViewController()
+        let editProfile = UINavigationController(rootViewController: EditProfileViewController())
         present(editProfile, animated: true)
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 import SnapKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController{
 
     private lazy var ProfileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -27,7 +27,7 @@ class EditProfileViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
         button.layer.cornerRadius = 3
-        
+        button.addTarget(self, action: #selector(didTabeditProfileImageButton), for: .touchUpInside)
         
         return button
     }()
@@ -77,6 +77,15 @@ class EditProfileViewController: UIViewController {
         return button
     }()
     
+    private lazy var imagePickerController: UIImagePickerController = {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        
+        return imagePickerController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,7 +93,27 @@ class EditProfileViewController: UIViewController {
     }
 }
 
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectImage: UIImage? = nil
+        
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            selectImage = editedImage
+        }else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectImage = originalImage
+        }
+        
+        ProfileImageView.image = selectImage
+        
+        picker.dismiss(animated: true)
+    }
+}
+
 private extension EditProfileViewController {
+    
+    @objc func didTabeditProfileImageButton(){
+        present(imagePickerController, animated: true)
+    }
     
     @objc func didTabDoneButton(){
         self.dismiss(animated: true)

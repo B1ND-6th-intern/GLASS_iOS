@@ -203,7 +203,7 @@
 			);
 			mainGroup = 808EA1982715D547003F88ED;
 			packageReferences = (
-				808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */,
+				808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit.git" */,
 				80761DE5272438A10057FF51 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
 			);
 			productRefGroup = 808EA1982715D547003F88ED;
@@ -458,7 +458,7 @@
 				kind = branch;
 			};
 		};
-		808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -476,7 +476,7 @@
 		};
 		808EA1B9271653B3003F88ED /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit.git" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
