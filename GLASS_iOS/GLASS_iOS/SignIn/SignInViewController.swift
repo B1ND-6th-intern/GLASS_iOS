@@ -36,6 +36,7 @@ class SignInViewController: UIViewController {
         textfield.placeholder = "비밀번호"
         textfield.tintColor = .systemBlue
         textfield.borderStyle = .roundedRect
+        textfield.isSecureTextEntry = true
         
         return textfield
     }()

@@ -39,6 +39,7 @@ class StudentsSignUpViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
         textfield.alpha = 0.8
+        textfield.isSecureTextEntry = true
         
         return textfield
     }()
@@ -50,6 +51,7 @@ class StudentsSignUpViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
         textfield.alpha = 0.8
+        textfield.isSecureTextEntry = true
         
         return textfield
     }()

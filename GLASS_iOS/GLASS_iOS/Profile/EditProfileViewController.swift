@@ -16,6 +16,7 @@ class EditProfileViewController: UIViewController{
         imageView.layer.cornerRadius = 40.0
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.quaternaryLabel.cgColor
+        imageView.clipsToBounds = true
         
         return imageView
     }()
