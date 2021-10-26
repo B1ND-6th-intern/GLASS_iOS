@@ -7,6 +7,7 @@
 
 import SnapKit
 import UIKit
+import Alamofire
 
 class SignInViewController: UIViewController {
     
@@ -48,6 +49,7 @@ class SignInViewController: UIViewController {
         button.backgroundColor = mainColor
         button.titleLabel?.textAlignment = .center
         button.layer.cornerRadius = 5.0
+        button.addTarget(self, action: #selector(didTabSignInButton), for: .touchUpInside)
         
         return button
     }()
@@ -85,10 +87,35 @@ class SignInViewController: UIViewController {
 
 private extension SignInViewController{
     
+    @objc func didTabSignInButton() {
+        let url = "http://10.80.162.123:8080/login"
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 10
+        
+        let email = emailTextField.text
+        let password = passWordTextField.text
+        
+        let params = ["email":"\(email!)", "password":"\(password!)"] as Dictionary
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+        AF.request(request).responseString { (response) in
+            switch response.result {
+            case .success:
+                print("POST 성공")
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+            }
+        }
+    }
+    
     @objc func didTabmoveToSignUpButton() {
         let rootVC = SelectJobViewController()
         navigationController?.pushViewController(rootVC, animated: true)
-        
     }
     
     func setup(){

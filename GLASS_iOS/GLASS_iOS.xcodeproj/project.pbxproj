@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E8D4BB0F9461B19DE921A2B /* Pods_GLASS_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529062CE95EE6207D6FEEA6A /* Pods_GLASS_iOS.framework */; };
 		80761DD027194A300057FF51 /* SelectJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DCF27194A300057FF51 /* SelectJobViewController.swift */; };
 		80761DD227194AC80057FF51 /* PnTSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD127194AC80057FF51 /* PnTSignUpViewController.swift */; };
 		80761DD7271D90DA0057FF51 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DD6271D90DA0057FF51 /* PopularViewController.swift */; };
@@ -32,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4585F9363AEE2B514FE7EE4E /* Pods-GLASS_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GLASS_iOS.release.xcconfig"; path = "Target Support Files/Pods-GLASS_iOS/Pods-GLASS_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		529062CE95EE6207D6FEEA6A /* Pods_GLASS_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GLASS_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80761DCF27194A300057FF51 /* SelectJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectJobViewController.swift; sourceTree = "<group>"; };
 		80761DD127194AC80057FF51 /* PnTSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PnTSignUpViewController.swift; sourceTree = "<group>"; };
 		80761DD6271D90DA0057FF51 /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		808EA1CD271687C7003F88ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LunchScreen.storyboard; sourceTree = "<group>"; };
 		808EA1D1271874A2003F88ED /* StudentsSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsSignUpViewController.swift; sourceTree = "<group>"; };
+		C08F57C580B2F19BC50E65C6 /* Pods-GLASS_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GLASS_iOS.debug.xcconfig"; path = "Target Support Files/Pods-GLASS_iOS/Pods-GLASS_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +67,30 @@
 			files = (
 				808EA1BA271653B3003F88ED /* SnapKit in Frameworks */,
 				80761DE7272438A10057FF51 /* BSImagePicker in Frameworks */,
+				2E8D4BB0F9461B19DE921A2B /* Pods_GLASS_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8852CAEE36A03BB0D1F879 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C08F57C580B2F19BC50E65C6 /* Pods-GLASS_iOS.debug.xcconfig */,
+				4585F9363AEE2B514FE7EE4E /* Pods-GLASS_iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		401CEC58856E4652030C4C3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				529062CE95EE6207D6FEEA6A /* Pods_GLASS_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		80761DD8271D90E10057FF51 /* Popular */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +114,8 @@
 			children = (
 				808EA1A32715D547003F88ED /* GLASS_iOS */,
 				80761DE42724355E0057FF51 /* GLASS_iOS.app */,
+				2D8852CAEE36A03BB0D1F879 /* Pods */,
+				401CEC58856E4652030C4C3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 808EA1B52715D54A003F88ED /* Build configuration list for PBXNativeTarget "GLASS_iOS" */;
 			buildPhases = (
+				E83FF41855C9FF7E99BA6736 /* [CP] Check Pods Manifest.lock */,
 				808EA19D2715D547003F88ED /* Sources */,
 				808EA19E2715D547003F88ED /* Frameworks */,
 				808EA19F2715D547003F88ED /* Resources */,
+				E616159086B37CFD857B2C26 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,7 +229,7 @@
 			);
 			mainGroup = 808EA1982715D547003F88ED;
 			packageReferences = (
-				808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */,
 				80761DE5272438A10057FF51 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
 			);
 			productRefGroup = 808EA1982715D547003F88ED;
@@ -226,6 +252,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E616159086B37CFD857B2C26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GLASS_iOS/Pods-GLASS_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GLASS_iOS/Pods-GLASS_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GLASS_iOS/Pods-GLASS_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E83FF41855C9FF7E99BA6736 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GLASS_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		808EA19D2715D547003F88ED /* Sources */ = {
@@ -374,6 +442,7 @@
 		};
 		808EA1B62715D54A003F88ED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C08F57C580B2F19BC50E65C6 /* Pods-GLASS_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -401,6 +470,7 @@
 		};
 		808EA1B72715D54A003F88ED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4585F9363AEE2B514FE7EE4E /* Pods-GLASS_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -458,7 +528,7 @@
 				kind = branch;
 			};
 		};
-		808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -476,7 +546,7 @@
 		};
 		808EA1B9271653B3003F88ED /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = 808EA1B8271653B3003F88ED /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
