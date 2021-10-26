@@ -10,6 +10,24 @@ import UIKit
 
 final class FeedTableViewCell: UITableViewCell{
     
+    private lazy var profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .tertiaryLabel
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
+        
+        return imageView
+    }()
+    
+    private lazy var userNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "UserName" // 서버
+        label.font = .systemFont(ofSize: 14.0, weight: .medium)
+        label.textColor = .label
+        
+        return label
+    }()
+    
     private lazy var postImageView: UIImageView = {
         let postImageView = UIImageView()
         postImageView.backgroundColor = .tertiaryLabel
@@ -80,6 +98,8 @@ final class FeedTableViewCell: UITableViewCell{
     
     func setup(){
         [
+            profileImageView,
+            userNameLabel,
             postImageView,
             likeButton,
             commentButton,
@@ -90,10 +110,24 @@ final class FeedTableViewCell: UITableViewCell{
             dateLabel
         ].forEach{ addSubview($0) }
         
+        profileImageView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(5.0)
+            $0.leading.equalToSuperview().offset(5.0)
+            $0.bottom.equalTo(postImageView.snp.top).offset(-5.0)
+            $0.width.equalTo(40.0)
+            $0.height.equalTo(profileImageView.snp.width)
+        }
+        
+        userNameLabel.snp.makeConstraints{
+            $0.top.equalTo(profileImageView.snp.top)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
+            $0.bottom.equalTo(profileImageView.snp.bottom)
+        }
+        
         postImageView.snp.makeConstraints{
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.top.equalToSuperview()
+            $0.top.equalTo(profileImageView.snp.bottom)
             $0.height.equalTo(postImageView.snp.width)
         }
         
