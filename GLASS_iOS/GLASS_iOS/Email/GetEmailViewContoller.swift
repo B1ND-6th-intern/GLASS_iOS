@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+
+let url1 = "http://10.80.162.123:8080"
 
 class GetEmailViewContoller: UIViewController{
     
@@ -66,13 +69,40 @@ class GetEmailViewContoller: UIViewController{
 private extension GetEmailViewContoller{
     
     @objc func didTabcheckAuthrizationButton() {
+        
+        let url = "\(url1)/users/email-auth"
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 10
+        
+        let authrization = checkNumberTextField.text
+        
+        let params = ["":"\(authrization!)"] as Dictionary
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+        AF.request(request).responseString { (response) in
+            switch response.result {
+            case .success:
+                print("POST 성공")
+                print(response)
+//                self.navigationController?.popToRootViewController(animated: true)
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+//                self.showToast(message: "틀린 인증번호 입니다.", font: UIFont.systemFont(ofSize: 12.5, weight: .medium))
+            }
+        }
+    //ksemms20@gmail.com
+        
         //서버에 입력값을 보내주고 돌아온 값이 true일 때
 //        navigationController?.popToRootViewController(animated: true)
         // false일 때
         // 틀렸다는 토스트 메세지 띄워주기
-        showToast(message: "틀린 인증번호 입니다.", font: UIFont.systemFont(ofSize: 12.5, weight: .medium))
+//        showToast(message: "틀린 인증번호 입니다.", font: UIFont.systemFont(ofSize: 12.5, weight: .medium))
     }
-    
     
     func showToast(message : String, font: UIFont) {
         let toastLabel = UILabel(

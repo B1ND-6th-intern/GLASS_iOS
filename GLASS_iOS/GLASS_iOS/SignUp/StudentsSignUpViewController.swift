@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+
+let url = "http://10.80.162.123:8080"
 
 class StudentsSignUpViewController: UIViewController{
     
@@ -146,8 +149,63 @@ class StudentsSignUpViewController: UIViewController{
 private extension StudentsSignUpViewController{
     
     @objc func didTabSignUpButton(){
-        let vc = GetEmailViewContoller()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        let joinUrl = "\(url)/join"
+        var request = URLRequest(url: URL(string: joinUrl)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 10
+        
+        let email = emailTextfield.text
+        let password = passWordTextfield.text
+        let passwordCheck = passWordCheckTextfield.text
+        let name = nameTextfield.text
+        let grade = gradeTextfield.text
+        let class1 = classTextfield.text
+        let number = numberTextfield.text
+        let agree = true
+        let permission: Int = 0
+        
+        let params = [
+            "email":"\(email!)",
+            "password":"\(password!)",
+            "password2":"\(passwordCheck!)",
+            "name":"\(name!)",
+            "grade":"\(grade!)",
+            "classNumber":"\(class1!)",
+            "stuNumber":"\(number!)",
+            "permission":"\(permission)",
+            "isAgree":"\(agree)"
+        ] as Dictionary
+        
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+        
+        AF.request(request).responseString { (response) in
+            switch response.result {
+            case .success:
+                print("POST 성공")
+                print(response)
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+        }
+        
+            sleep(1)
+        
+            let url = "\(url)/users/email-auth"
+            AF.request(url,
+                       method: .get,
+                       parameters: nil,
+                       encoding: URLEncoding.default,
+                       headers: ["Content-Type":"application/json", "Accept":"application/json"])
+            .validate(statusCode: 200..<300)
+            .responseJSON { (json) in
+            print(json)
+            }
+        }
     }
     
     func setup() {
