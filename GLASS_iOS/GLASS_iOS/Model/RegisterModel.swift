@@ -24,3 +24,10 @@ struct Resend: Codable{
     var error: String?
     var message: String?
 }
+
+struct LogIn: Codable {
+    var status: Int
+    var error: String?
+    var message: String?
+    var token: String?
+}

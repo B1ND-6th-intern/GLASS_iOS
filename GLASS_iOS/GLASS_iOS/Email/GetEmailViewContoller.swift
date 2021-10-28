@@ -9,9 +9,11 @@ import UIKit
 import SnapKit
 import Alamofire
 
-let url1 = "http://10.80.162.123:8080"
-
 class GetEmailViewContoller: UIViewController{
+    
+    let url1 = "http://10.80.162.123:8080"
+    
+    var resendCount: Int = 5
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -44,6 +46,7 @@ class GetEmailViewContoller: UIViewController{
         button.setTitleColor(UIColor(named: "Color"), for: .normal)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .medium)
+        button.addTarget(self, action: #selector(didTadResendButton), for: .touchUpInside)
         
         return button
     }()
@@ -82,12 +85,6 @@ private extension GetEmailViewContoller{
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.timeoutInterval = 10
         
-//        do{
-//            try request.httpBody = JSONSerialization.data(withJSONObject: param, options: [])
-//        }catch{
-//            print("http Body Error")
-//        }
-        
         AF.request(request).responseData { response in
             switch response.result {
             case .success(let data):
@@ -100,6 +97,10 @@ private extension GetEmailViewContoller{
             }
         }
         
+        resendCount = resendCount - 1
+        if resendCount == 0 {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func didTabCheckAuthrizationButton() {
@@ -137,13 +138,6 @@ private extension GetEmailViewContoller{
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
             }
         }
-    //ksemms20@gmail.com
-        
-        //서버에 입력값을 보내주고 돌아온 값이 true일 때
-//        navigationController?.popToRootViewController(animated: true)
-        // false일 때
-        // 틀렸다는 토스트 메세지 띄워주기
-//        showToast(message: "틀린 인증번호 입니다.", font: UIFont.systemFont(ofSize: 12.5, weight: .medium))
     }
     
     func showToast(message : String, font: UIFont) {

@@ -11,6 +11,8 @@ import Alamofire
 
 class PnTSignUpViewController: UIViewController{
     
+    let url = "http://10.80.162.123:8080"
+    
     let mainColor = UIColor(named: "Color")
     let lightGray = UIColor(named: "Color-1")
     
@@ -165,7 +167,7 @@ private extension PnTSignUpViewController{
         
             sleep(1)
         
-            let url = "\(url)/users/email-auth"
+            let url = "\(self.url)/users/email-auth"
             AF.request(url,
                        method: .get,
                        parameters: nil,

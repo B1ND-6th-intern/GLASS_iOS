@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .systemBackground
-//        window?.rootViewController = GetEmailViewContoller()
+//        window?.rootViewController = tabBarcontroller()
         window?.rootViewController = UINavigationController(rootViewController: SignInViewController())
         window?.tintColor = .label
         window?.makeKeyAndVisible()

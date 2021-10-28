@@ -11,6 +11,8 @@ import Alamofire
 
 class SignInViewController: UIViewController {
     
+    let url1 = "http://10.80.162.123:8080"
+    
     let mainColor = UIColor(named: "Color")
     
     private lazy var GlassImageView: UIImageView = {
@@ -92,7 +94,7 @@ class SignInViewController: UIViewController {
 private extension SignInViewController{
     
     @objc func didTabSignInButton() {
-        let url = "http://10.80.162.123:8080/login"
+        let url = "\(url)/login"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -101,16 +103,30 @@ private extension SignInViewController{
         let email = emailTextField.text
         let password = passWordTextField.text
         
-        let params = ["email":"\(email!)", "password":"\(password!)"] as Dictionary
+        let params = [
+            "email":"\(email!)",
+            "password":"\(password!)"
+        ] as Dictionary
+        
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
         } catch {
             print("http Body Error")
         }
-        AF.request(request).responseString { (response) in
+        
+        AF.request(request).responseData { (response) in
             switch response.result {
-            case .success:
+            case .success(let data):
                 print("POST 성공")
+                
+                let decoder = JSONDecoder()
+                let result = try? decoder.decode(LogIn.self, from: data)
+                dump(result)
+                
+                if result?.status == 200{
+                    
+                }
+                
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
             }
