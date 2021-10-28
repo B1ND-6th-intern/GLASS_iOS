@@ -54,7 +54,7 @@ class GetEmailViewContoller: UIViewController{
         button.backgroundColor = UIColor(named: "Color")
         button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .medium)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(didTabcheckAuthrizationButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTabCheckAuthrizationButton), for: .touchUpInside)
         
         return button
     }()
@@ -63,12 +63,46 @@ class GetEmailViewContoller: UIViewController{
         super.viewDidLoad()
         setup()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
+    }
 }
 
 
 private extension GetEmailViewContoller{
     
-    @objc func didTabcheckAuthrizationButton() {
+    @objc func didTadResendButton(){
+        
+        let url = "\(url1)/users/email-auth"
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 10
+        
+//        do{
+//            try request.httpBody = JSONSerialization.data(withJSONObject: param, options: [])
+//        }catch{
+//            print("http Body Error")
+//        }
+        
+        AF.request(request).responseData { response in
+            switch response.result {
+            case .success(let data):
+                print("GET 성공")
+                let decoder = JSONDecoder()
+                let result = try? decoder.decode(Resend.self, from: data)
+                dump(result)
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+            }
+        }
+        
+    }
+    
+    @objc func didTabCheckAuthrizationButton() {
         
         let url = "\(url1)/users/email-auth"
         var request = URLRequest(url: URL(string: url)!)
@@ -78,21 +112,29 @@ private extension GetEmailViewContoller{
         
         let authrization = checkNumberTextField.text
         
-        let params = ["":"\(authrization!)"] as Dictionary
+        let params = ["confirmation":"\(authrization!)"] as Dictionary
+        
         do {
             try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
         } catch {
             print("http Body Error")
         }
-        AF.request(request).responseString { (response) in
+        
+        AF.request(request).responseData { (response) in
             switch response.result {
-            case .success:
-                print("POST 성공")
-                print(response)
-//                self.navigationController?.popToRootViewController(animated: true)
+                case .success(let data):
+                    print("POST 성공")
+                    let decoder = JSONDecoder()
+                    let result: Getemail? = try? decoder.decode(Getemail.self, from: data)
+                    print(data)
+                
+                    if result?.status == 200{
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }else{
+                        self.showToast(message: "틀린 인증번호 입니다.", font: UIFont.systemFont(ofSize: 12.5, weight: .medium))
+                }
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-//                self.showToast(message: "틀린 인증번호 입니다.", font: UIFont.systemFont(ofSize: 12.5, weight: .medium))
             }
         }
     //ksemms20@gmail.com

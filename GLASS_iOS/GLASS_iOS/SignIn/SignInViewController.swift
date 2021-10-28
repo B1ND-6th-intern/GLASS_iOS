@@ -27,6 +27,8 @@ class SignInViewController: UIViewController {
         textfield.placeholder = "이메일"
         textfield.tintColor = .systemBlue
         textfield.borderStyle = .roundedRect
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -38,6 +40,8 @@ class SignInViewController: UIViewController {
         textfield.tintColor = .systemBlue
         textfield.borderStyle = .roundedRect
         textfield.isSecureTextEntry = true
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()

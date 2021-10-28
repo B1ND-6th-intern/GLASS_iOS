@@ -31,6 +31,8 @@ class StudentsSignUpViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
         textfield.alpha = 0.8
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -43,6 +45,8 @@ class StudentsSignUpViewController: UIViewController{
         textfield.textColor = .label
         textfield.alpha = 0.8
         textfield.isSecureTextEntry = true
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -55,6 +59,8 @@ class StudentsSignUpViewController: UIViewController{
         textfield.textColor = .label
         textfield.alpha = 0.8
         textfield.isSecureTextEntry = true
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -66,6 +72,8 @@ class StudentsSignUpViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
         textfield.alpha = 0.8
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -184,11 +192,19 @@ private extension StudentsSignUpViewController{
             print("http Body Error")
         }
         
-        AF.request(request).responseString { (response) in
+        AF.request(request).responseData { (response) in
             switch response.result {
-            case .success:
+            case .success(let data):
                 print("POST 성공")
-                print(response)
+                let decoder = JSONDecoder()
+                let result: Register? = try? decoder.decode(Register.self, from: data)
+                print(data)
+                
+                if result?.status == 200{
+                    let VC = GetEmailViewContoller()
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }
+                    
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
         }

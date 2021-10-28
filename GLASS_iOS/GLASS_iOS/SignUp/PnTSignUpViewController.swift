@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 class PnTSignUpViewController: UIViewController{
     
@@ -28,6 +29,8 @@ class PnTSignUpViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
         textfield.alpha = 0.8
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -40,6 +43,8 @@ class PnTSignUpViewController: UIViewController{
         textfield.textColor = .label
         textfield.alpha = 0.8
         textfield.isSecureTextEntry = true
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -52,6 +57,8 @@ class PnTSignUpViewController: UIViewController{
         textfield.textColor = .label
         textfield.alpha = 0.8
         textfield.isSecureTextEntry = true
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -63,6 +70,8 @@ class PnTSignUpViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.textColor = .label
         textfield.alpha = 0.8
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -108,8 +117,65 @@ class PnTSignUpViewController: UIViewController{
 private extension PnTSignUpViewController{
     
     @objc func didTabSignUpButton(){
-        let vc = GetEmailViewContoller()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        let joinUrl = "\(url)/join"
+        var request = URLRequest(url: URL(string: joinUrl)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 10
+        
+        let email = emailTextfield.text
+        let password = passWordTextfield.text
+        let passwordCheck = passWordCheckTextfield.text
+        let name = nameTextfield.text
+        let agree = true
+        let permission: Int = 1
+        
+        let params = [
+            "email":"\(email!)",
+            "password":"\(password!)",
+            "password2":"\(passwordCheck!)",
+            "name":"\(name!)",
+            "permission":"\(permission)",
+            "isAgree":"\(agree)"
+        ] as Dictionary
+        
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+        
+        AF.request(request).responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                print("POST 성공")
+                let decoder = JSONDecoder()
+                let result: Register? = try? decoder.decode(Register.self, from: data)
+                print(data)
+                
+                if result?.status == 200{
+                    let VC = GetEmailViewContoller()
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }
+                    
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+        }
+        
+            sleep(1)
+        
+            let url = "\(url)/users/email-auth"
+            AF.request(url,
+                       method: .get,
+                       parameters: nil,
+                       encoding: URLEncoding.default,
+                       headers: ["Content-Type":"application/json", "Accept":"application/json"])
+            .validate(statusCode: 200..<300)
+            .responseJSON { (json) in
+            print(json)
+            }
+        }
     }
     
     func setup() {

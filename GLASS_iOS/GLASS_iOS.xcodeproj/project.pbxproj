@@ -15,6 +15,7 @@
 		80761DDC271E866F0057FF51 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DDB271E866F0057FF51 /* EditProfileViewController.swift */; };
 		80761DDF272186D50057FF51 /* GetEmailViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761DDE272186D50057FF51 /* GetEmailViewContoller.swift */; };
 		80761DE7272438A10057FF51 /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 80761DE6272438A10057FF51 /* BSImagePicker */; };
+		80761E2C272AB0800057FF51 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80761E2B272AB0800057FF51 /* RegisterModel.swift */; };
 		808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A42715D547003F88ED /* AppDelegate.swift */; };
 		808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A62715D547003F88ED /* SceneDelegate.swift */; };
 		808EA1A92715D547003F88ED /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1A82715D547003F88ED /* FeedViewController.swift */; };
@@ -42,6 +43,7 @@
 		80761DDB271E866F0057FF51 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		80761DDE272186D50057FF51 /* GetEmailViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEmailViewContoller.swift; sourceTree = "<group>"; };
 		80761DE42724355E0057FF51 /* GLASS_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLASS_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80761E2B272AB0800057FF51 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		808EA1A42715D547003F88ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		808EA1A62715D547003F88ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		808EA1A82715D547003F88ED /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			path = Email;
 			sourceTree = "<group>";
 		};
+		80761E2A272AB0720057FF51 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				80761E2B272AB0800057FF51 /* RegisterModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		808EA1982715D547003F88ED = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +132,7 @@
 		808EA1A32715D547003F88ED /* GLASS_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				80761E2A272AB0720057FF51 /* Model */,
 				808EA1A42715D547003F88ED /* AppDelegate.swift */,
 				808EA1A62715D547003F88ED /* SceneDelegate.swift */,
 				808EA1C9271685C5003F88ED /* UIButton+.swift */,
@@ -317,6 +328,7 @@
 				808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */,
 				80761DD027194A300057FF51 /* SelectJobViewController.swift in Sources */,
 				808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */,
+				80761E2C272AB0800057FF51 /* RegisterModel.swift in Sources */,
 				808EA1CA271685C5003F88ED /* UIButton+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
