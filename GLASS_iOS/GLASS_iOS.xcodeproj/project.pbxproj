@@ -31,6 +31,7 @@
 		808EA1CE271687C7003F88ED /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1CD271687C7003F88ED /* SignInViewController.swift */; };
 		808EA1D02716BA29003F88ED /* LunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */; };
 		808EA1D2271874A3003F88ED /* StudentsSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808EA1D1271874A2003F88ED /* StudentsSignUpViewController.swift */; };
+		80E7EFFF272AEDA4007EA591 /* MainURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E7EFFE272AEDA4007EA591 /* MainURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		808EA1CD271687C7003F88ED /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LunchScreen.storyboard; sourceTree = "<group>"; };
 		808EA1D1271874A2003F88ED /* StudentsSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsSignUpViewController.swift; sourceTree = "<group>"; };
+		80E7EFFE272AEDA4007EA591 /* MainURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainURL.swift; sourceTree = "<group>"; };
 		C08F57C580B2F19BC50E65C6 /* Pods-GLASS_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GLASS_iOS.debug.xcconfig"; path = "Target Support Files/Pods-GLASS_iOS/Pods-GLASS_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 				808EA1CF2716BA29003F88ED /* LunchScreen.storyboard */,
 				808EA1AD2715D54A003F88ED /* Assets.xcassets */,
 				808EA1B22715D54A003F88ED /* Info.plist */,
+				80E7EFFE272AEDA4007EA591 /* MainURL.swift */,
 			);
 			path = GLASS_iOS;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				80761DDA271D93300057FF51 /* PopularTableViewCell.swift in Sources */,
 				808EA1A52715D547003F88ED /* AppDelegate.swift in Sources */,
 				80761DD027194A300057FF51 /* SelectJobViewController.swift in Sources */,
+				80E7EFFF272AEDA4007EA591 /* MainURL.swift in Sources */,
 				808EA1A72715D547003F88ED /* SceneDelegate.swift in Sources */,
 				80761E2C272AB0800057FF51 /* RegisterModel.swift in Sources */,
 				808EA1CA271685C5003F88ED /* UIButton+.swift in Sources */,

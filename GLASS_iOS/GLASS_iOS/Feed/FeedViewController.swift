@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 import BSImagePicker
 
-class FeedViewController: UIViewController {
+class FeedViewController: MainURL {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)

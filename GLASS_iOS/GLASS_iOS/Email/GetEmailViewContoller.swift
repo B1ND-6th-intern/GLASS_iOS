@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 import Alamofire
 
-class GetEmailViewContoller: UIViewController{
-    
-    let url1 = "http://10.80.162.123:8080"
+class GetEmailViewContoller: MainURL{
     
     var resendCount: Int = 5
     
@@ -79,7 +77,7 @@ private extension GetEmailViewContoller{
     
     @objc func didTadResendButton(){
         
-        let url = "\(url1)/users/email-auth"
+        let url = "\(super.MainURL)/users/email-auth"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -105,7 +103,7 @@ private extension GetEmailViewContoller{
     
     @objc func didTabCheckAuthrizationButton() {
         
-        let url = "\(url1)/users/email-auth"
+        let url = "\(super.MainURL)/users/email-auth"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

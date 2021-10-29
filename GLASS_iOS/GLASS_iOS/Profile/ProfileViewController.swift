@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: MainURL{
     
     private lazy var profileImageView: UIImageView  = {
         let imageView = UIImageView()

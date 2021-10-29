@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SelectJobViewController: UIViewController {
+class SelectJobViewController: MainURL{
     
     let mainColor = UIColor(named: "Color")
     

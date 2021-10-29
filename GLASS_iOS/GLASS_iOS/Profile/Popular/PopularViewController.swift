@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class PopularViewController: UIViewController{
+class PopularViewController: MainURL{
     
     private lazy var popularTableView: UITableView = {
         let tableView = UITableView(frame: .zero)

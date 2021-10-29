@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 import Alamofire
 
-class PnTSignUpViewController: UIViewController{
-    
-    let url = "http://10.80.162.123:8080"
+class PnTSignUpViewController: MainURL{
     
     let mainColor = UIColor(named: "Color")
     let lightGray = UIColor(named: "Color-1")
@@ -120,7 +118,7 @@ private extension PnTSignUpViewController{
     
     @objc func didTabSignUpButton(){
         
-        let joinUrl = "\(url)/join"
+        let joinUrl = "\(super.MainURL)/join"
         var request = URLRequest(url: URL(string: joinUrl)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -167,7 +165,7 @@ private extension PnTSignUpViewController{
         
             sleep(1)
         
-            let url = "\(self.url)/users/email-auth"
+            let url = "\(super.MainURL)/users/email-auth"
             AF.request(url,
                        method: .get,
                        parameters: nil,

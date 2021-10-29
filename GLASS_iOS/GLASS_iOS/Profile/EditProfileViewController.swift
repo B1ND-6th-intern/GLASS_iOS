@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 import SnapKit
 
-class EditProfileViewController: UIViewController{
+class EditProfileViewController: MainURL{
 
     private lazy var ProfileImageView: UIImageView = {
         let imageView = UIImageView()

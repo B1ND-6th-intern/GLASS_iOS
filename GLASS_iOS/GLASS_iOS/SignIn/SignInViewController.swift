@@ -9,9 +9,7 @@ import SnapKit
 import UIKit
 import Alamofire
 
-class SignInViewController: UIViewController {
-    
-    let url1 = "http://10.80.162.123:8080"
+class SignInViewController: MainURL {
     
     let mainColor = UIColor(named: "Color")
     
@@ -94,7 +92,7 @@ class SignInViewController: UIViewController {
 private extension SignInViewController{
     
     @objc func didTabSignInButton() {
-        let url = "\(url)/login"
+        let url = "\(super.MainURL)/login"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -118,10 +116,9 @@ private extension SignInViewController{
             switch response.result {
             case .success(let data):
                 print("POST 성공")
-                
                 let decoder = JSONDecoder()
                 let result = try? decoder.decode(LogIn.self, from: data)
-                dump(result)
+                dump(data)
                 
                 if result?.status == 200{
                     

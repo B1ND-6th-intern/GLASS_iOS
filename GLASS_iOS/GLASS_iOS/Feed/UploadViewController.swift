@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-final class UploadViewContoller: UIViewController {
+final class UploadViewContoller: MainURL {
     
     private let uploadImage: UIImage
     private let imageView = UIImageView()
