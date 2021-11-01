@@ -107,7 +107,6 @@ private extension GetEmailViewContoller{
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.timeoutInterval = 10
         
         let authrization = checkNumberTextField.text
         

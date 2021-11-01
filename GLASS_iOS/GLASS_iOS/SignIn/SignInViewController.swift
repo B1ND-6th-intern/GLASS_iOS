@@ -118,11 +118,14 @@ private extension SignInViewController{
                 print("POST 성공")
                 let decoder = JSONDecoder()
                 let result = try? decoder.decode(LogIn.self, from: data)
-                dump(data)
+                print(data)
+                
                 
                 if result?.status == 200{
-                    // TabBarController 띄우기
-                    // 토큰은 어떻게 되는 걸까....?
+                    UIView.animate(withDuration: 0.3) {
+                        self.view.window?.rootViewController = TabBarcontroller()
+                        self.view.layoutIfNeeded()
+                    }
                 }
                 
             case .failure(let error):
