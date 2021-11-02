@@ -51,22 +51,6 @@ final class FeedTableViewCell: UITableViewCell{
         return commentButton
     }()
     
-    private lazy var directMessageButton: UIButton = {
-        let directMessageButton = UIButton()
-//        directMessageButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
-        directMessageButton.setImage(systemName: "paperplane")
-        
-        return directMessageButton
-    }()
-    
-    private lazy var bookmarkButton: UIButton = {
-        let bookmarkButton = UIButton()
-//        bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        bookmarkButton.setImage(systemName: "bookmark")
-        
-        return bookmarkButton
-    }()
-    
     private lazy var currentLikedCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -103,8 +87,7 @@ final class FeedTableViewCell: UITableViewCell{
             postImageView,
             likeButton,
             commentButton,
-            directMessageButton,
-            bookmarkButton,
+            
             currentLikedCountLabel,
             contentsLabel,
             dateLabel
@@ -148,37 +131,22 @@ final class FeedTableViewCell: UITableViewCell{
             $0.height.equalTo(buttonWidth)
         }
         
-        directMessageButton.snp.makeConstraints{
-            $0.leading.equalTo(commentButton.snp.trailing).offset(12.0)
-            $0.top.equalTo(likeButton.snp.top)
-            $0.width.equalTo(buttonWidth)
-            $0.height.equalTo(buttonWidth)
-        }
-        
-        bookmarkButton.snp.makeConstraints{
-            $0.trailing.equalToSuperview().inset(buttonInset)
-            $0.top.equalTo(likeButton.snp.top)
-            $0.width.equalTo(buttonWidth)
-            $0.height.equalTo(buttonWidth)
-        }
-        
-        
         currentLikedCountLabel.snp.makeConstraints{
             $0.leading.equalTo(likeButton.snp.leading)
-            $0.trailing.equalTo(bookmarkButton.snp.trailing)
+            $0.trailing.equalTo(postImageView.snp.trailing)
             $0.top.equalTo(likeButton.snp.bottom).offset(14.0)
         }
         
         contentsLabel.snp.makeConstraints{
             $0.leading.equalTo(likeButton.snp.leading)
-            $0.trailing.equalTo(bookmarkButton.snp.trailing)
+            $0.trailing.equalTo(postImageView.snp.trailing)
             $0.top.equalTo(currentLikedCountLabel.snp.bottom).offset(8.0)
 
         }
         
         dateLabel.snp.makeConstraints{
             $0.leading.equalTo(likeButton.snp.leading)
-            $0.trailing.equalTo(bookmarkButton.snp.trailing)
+            $0.trailing.equalTo(postImageView.snp.trailing)
             $0.top.equalTo(contentsLabel.snp.bottom).offset(8.0)
             $0.bottom.equalToSuperview().inset(16.0)
         }

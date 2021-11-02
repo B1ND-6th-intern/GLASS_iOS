@@ -31,3 +31,16 @@ struct LogIn: Codable {
     var message: String?
     var token: String?
 }
+
+struct ImagePost: Codable{
+    var status: Int
+    var error: String?
+    var message: String?
+    var jsonUrl: String?
+}
+
+struct Post: Codable{
+    var status: Int
+    var error: String?
+    var message: String?
+}
