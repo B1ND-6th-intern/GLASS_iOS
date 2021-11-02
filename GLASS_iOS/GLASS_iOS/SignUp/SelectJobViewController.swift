@@ -47,13 +47,6 @@ class SelectJobViewController: MainURL{
         return button
     }()
     
-//    private lazy var blueHalfView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = mainColor
-//
-//        return view
-//    }()
-    
     private lazy var ractangle: UIView = {
         let view = Ractangle()
         view.backgroundColor = mainColor
