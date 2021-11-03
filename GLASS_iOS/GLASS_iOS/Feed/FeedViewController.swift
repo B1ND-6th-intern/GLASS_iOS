@@ -7,7 +7,7 @@
 
 import SnapKit
 import UIKit
-import BSImagePicker
+import Alamofire
 
 class FeedViewController: MainURL {
     
@@ -91,7 +91,7 @@ private extension FeedViewController {
             image: UIImage(named: "GLASS_Small"),
             style: .plain,
             target: nil,
-            action: nil
+            action: nil//#selector(didTabLogoButton)
         )
         logobutton.tintColor = UIColor(named: "Color")
         logobutton.width = 20
@@ -103,6 +103,40 @@ private extension FeedViewController {
     @objc func didTabUploadButton() {
         present(imagePickerController, animated: true)
     }
+    
+//    @objc func didTabLogoButton() {
+//
+//        let getPostUrl = "\(super.MainURL)"
+//        var dataSource: [Contact] = []
+//
+//        var request = URLRequest(url: URL(string: getPostUrl)!)
+//        request.httpMethod = "GET"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.timeoutInterval = 10
+//
+//        AF.request(request).responseData { (response) in
+//            switch response.result {
+//            case .success(let data):
+//                print("POST 성공")
+//
+//                do {
+//                    let result = try JSONDecoder().decode(Writings.self, from: data)
+//
+//                    self.tableView.dataSource = result.contacts
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                }catch(let err){
+//                    print(err?.localizedDescription)
+//                }
+//
+//
+//            case .failure(let error):
+//                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+//            }
+//        }
+//
+//    }
     
     func setupTableView(){
         view.addSubview(tableView)

@@ -36,16 +36,16 @@ final class FeedTableViewCell: UITableViewCell{
     }()
     
     private lazy var likeButton: UIButton = {
-        let likeButton = UIButton()
-//        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        let likeButton = UIButton(type: .system)
         likeButton.setImage(systemName: "heart")
+        likeButton.addTarget(self, action: #selector(didTabLikeButton), for: .touchUpInside)
+        likeButton.isEnabled = true
         
         return likeButton
     }()
     
     private lazy var commentButton: UIButton = {
         let commentButton = UIButton()
-//        commentButton.setImage(UIImage(systemName: "message"), for: .normal)
         commentButton.setImage(systemName: "message")
         
         return commentButton
@@ -66,21 +66,30 @@ final class FeedTableViewCell: UITableViewCell{
         label.textColor = .label
         label.numberOfLines = 5
         label.font = .systemFont(ofSize: 13.0, weight: .semibold)
-        label.text = "이 글은 Outstargram을 테스트 하는 글로 이 label안에 있는 글은 5줄 까지 되고요 또 이 안에 있는 글은 contentsLabel로써 글을 제목(?)을 나타내는 글 입니다."
+        label.text = "이 글은 GLASS을 테스트 하는 글로 이 label안에 있는 글은 5줄 까지 되고요 또 이 안에 있는 글은 contentsLabel로써 글을 제목(?)을 나타내는 글 입니다."
         
         return label
     }()
     
-    private lazy var dateLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 11.0, weight: .medium)
-        label.text = "1일 전"
+    @objc func didTabLikeButton(){
+        if likeButton.currentImage == UIImage(named: "heart") {
+            self.likeButton.setImage(systemName: "heart.fill")
+        }else{
+            self.likeButton.setImage(systemName: "heart")
+        }
         
-        return label
-    }()
+        
+        
+    }
+    
+    @objc func didTabCommentButton(){
+        
+    }
     
     func setup(){
+        
+        self.contentView.alpha = 0
+        
         [
             profileImageView,
             userNameLabel,
@@ -89,8 +98,7 @@ final class FeedTableViewCell: UITableViewCell{
             commentButton,
             
             currentLikedCountLabel,
-            contentsLabel,
-            dateLabel
+            contentsLabel
         ].forEach{ addSubview($0) }
         
         profileImageView.snp.makeConstraints{
@@ -141,14 +149,8 @@ final class FeedTableViewCell: UITableViewCell{
             $0.leading.equalTo(likeButton.snp.leading)
             $0.trailing.equalTo(postImageView.snp.trailing)
             $0.top.equalTo(currentLikedCountLabel.snp.bottom).offset(8.0)
-
-        }
-        
-        dateLabel.snp.makeConstraints{
-            $0.leading.equalTo(likeButton.snp.leading)
-            $0.trailing.equalTo(postImageView.snp.trailing)
-            $0.top.equalTo(contentsLabel.snp.bottom).offset(8.0)
             $0.bottom.equalToSuperview().inset(16.0)
+
         }
     }
     

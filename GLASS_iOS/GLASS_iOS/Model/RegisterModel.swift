@@ -44,3 +44,26 @@ struct Post: Codable{
     var error: String?
     var message: String?
 }
+
+//class Owner: Codable{
+//    var name: String
+//    var avatar: String
+//    var stuNumber: Int
+//    var classNumber: Int
+//    var grade: Int
+//    var permission: Int
+//}
+//
+//class Writings: Codable{
+//    var hashtags: String?
+//    var imgs: String?
+//    var text: String?
+//    var _id: String?
+//    var owner: Owner
+//    var isLike: DarwinBoolean
+//    var likeCount: Int
+//}
+//class HomeResponse: Codable{
+//    var writings: Writings
+//}
+//

@@ -88,7 +88,7 @@ private extension UploadViewContoller {
     @objc func didTabRightButton() {
         
         let upLoadImage = uploadImage
-        let data = upLoadImage.jpegData(compressionQuality: 0.9)
+        let data = upLoadImage.jpegData(compressionQuality: 1)!
         
         var temp = ""
         let upLoadImageURL = temp
@@ -103,7 +103,8 @@ private extension UploadViewContoller {
         imageRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         imageRequest.timeoutInterval = 10
         
-        sendImage(data!, url: urlConvertible)
+//        sendImage(data!, url: urlConvertible)
+        upload(image: data, to: "\(super.MainURL)/writings/upload/imgs")
         
         sleep(1)
         
@@ -173,10 +174,10 @@ private extension UploadViewContoller {
     }
     
     func sendImage(_ image: Data, url: URLConvertible) {
-        let header : HTTPHeaders = ["Content-Type" : "multipart/form-data"]
+        let header : HTTPHeaders = ["Content-type" : "multipart/form-data"]
         AF.upload(multipartFormData: {
-            $0.append(image, withName: "thumbnail", fileName: "imgs", mimeType: "image/jpeg")
-        }, to: url, headers: header)
+            $0.append(image, withName: "thumbnail", fileName: "imgs.jpeg", mimeType: "image/jpeg")
+        }, to: url, usingThreshold: UInt64.init(), method: .post ,headers: header)
             .responseData() { response in
                 switch response.result {
                 case .success(let data):
@@ -184,10 +185,9 @@ private extension UploadViewContoller {
                     let decoder = JSONDecoder()
                     let result: Post? = try? decoder.decode(Post.self, from: data)
                     print(data)
+                    dump(result?.status)
                     
                     if result?.status == 200{
-                        
-                        
                         
                         self.dismiss(animated: true)
                     }else{
@@ -200,5 +200,33 @@ private extension UploadViewContoller {
                 }
             }
         
+    }
+    
+    func upload(image: Data, to url: String) {
+        let headers: HTTPHeaders = ["Content-type": "multipart/form-data"]
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(image, withName: "image", fileName: "image.png", mimeType: "image/jpeg")
+        }, to: url, headers: headers)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    print("POST 성공")
+                    let decoder = JSONDecoder()
+                    let result: Post? = try? decoder.decode(Post.self, from: data)
+                    print(data)
+                    dump(result?.status)
+                    
+                    if result?.status == 200{
+                        
+                        self.dismiss(animated: true)
+                    }else{
+                        self.dismiss(animated: true)
+                    }
+                    
+                case .failure(let error):
+                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                    self.dismiss(animated: true)
+                }
+            }
     }
 }
