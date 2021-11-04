@@ -22,7 +22,7 @@ final class FeedTableViewCell: UITableViewCell {
     
     private lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "UserName" // 서버
+        label.text = "UserName"
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
         label.textColor = .label
         
@@ -43,13 +43,6 @@ final class FeedTableViewCell: UITableViewCell {
         likeButton.isEnabled = true
         
         return likeButton
-    }()
-    
-    private lazy var commentButton: UIButton = {
-        let commentButton = UIButton()
-        commentButton.setImage(systemName: "message")
-        
-        return commentButton
     }()
     
     private lazy var currentLikedCountLabel: UILabel = {
@@ -74,15 +67,13 @@ final class FeedTableViewCell: UITableViewCell {
     
     @objc func didTabLikeButton(){
         //좋아요 색깔 바꾸기
-        if likeButton.currentImage == UIImage(named: "heart") {
+        if likeButton.currentImage == UIImage(systemName: "heart") {
+            self.likeButton.tintColor = .red
             self.likeButton.setImage(systemName: "heart.fill")
         }else{
+            self.likeButton.tintColor = .black
             self.likeButton.setImage(systemName: "heart")
         }
-        
-    }
-    
-    @objc func didTabCommentButton(){
         
     }
     
@@ -95,7 +86,6 @@ final class FeedTableViewCell: UITableViewCell {
             userNameLabel,
             postImageView,
             likeButton,
-            commentButton,
             
             currentLikedCountLabel,
             contentsLabel
@@ -128,13 +118,6 @@ final class FeedTableViewCell: UITableViewCell {
         likeButton.snp.makeConstraints{
             $0.leading.equalToSuperview().inset(buttonInset)
             $0.top.equalTo(postImageView.snp.bottom).offset(buttonInset)
-            $0.width.equalTo(buttonWidth)
-            $0.height.equalTo(buttonWidth)
-        }
-        
-        commentButton.snp.makeConstraints{
-            $0.leading.equalTo(likeButton.snp.trailing).offset(12.0)
-            $0.top.equalTo(likeButton.snp.top)
             $0.width.equalTo(buttonWidth)
             $0.height.equalTo(buttonWidth)
         }

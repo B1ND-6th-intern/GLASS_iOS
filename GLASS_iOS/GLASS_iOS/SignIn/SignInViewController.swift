@@ -8,8 +8,11 @@
 import SnapKit
 import UIKit
 import Alamofire
+import KeychainAccess
 
 class SignInViewController: MainURL {
+    
+    fileprivate let keychain = Keychain(service: "B1ND-6th.GLASS-iOS")
     
     let mainColor = UIColor(named: "Color")
     
@@ -120,6 +123,11 @@ private extension SignInViewController{
                 let result = try? decoder.decode(LogIn.self, from: data)
                 print(data)
                 
+                do {
+                    try self.saveToken(token: result?.token)
+                } catch {
+                    print("error with save token")
+                }
                 
                 if result?.status == 200{
                     UIView.animate(withDuration: 0.3) {
@@ -132,6 +140,10 @@ private extension SignInViewController{
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
             }
         }
+    }
+    
+    func saveToken(token: String?) throws {
+        try self.keychain.set(token ?? "", key: "token")
     }
     
     @objc func didTabmoveToSignUpButton() {

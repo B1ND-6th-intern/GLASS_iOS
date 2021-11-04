@@ -38,6 +38,13 @@ class FeedViewController: MainURL {
         setupTableView()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        
+    }
 }
 
 extension FeedViewController: UITableViewDataSource{
