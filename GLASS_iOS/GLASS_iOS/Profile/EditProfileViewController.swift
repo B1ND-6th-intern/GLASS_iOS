@@ -119,7 +119,7 @@ private extension EditProfileViewController {
     @objc func didTabDoneButton(){
         self.dismiss(animated: true)
         
-        //서버로 값 보내주기
+        //서버로 바뀐 이름, 소개, 프로필, 이미지 값 보내주기
         
     }
     

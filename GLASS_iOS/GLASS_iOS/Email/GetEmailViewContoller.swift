@@ -171,7 +171,7 @@ private extension GetEmailViewContoller{
         ].forEach{ self.view.addSubview($0) }
         
         titleLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(150)
+            $0.top.equalToSuperview().offset(100)
             $0.centerX.equalToSuperview()
         }
         

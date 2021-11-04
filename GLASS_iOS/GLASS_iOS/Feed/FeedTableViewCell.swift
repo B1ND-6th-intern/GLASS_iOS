@@ -7,8 +7,9 @@
 
 import SnapKit
 import UIKit
+import Alamofire
 
-final class FeedTableViewCell: UITableViewCell{
+final class FeedTableViewCell: UITableViewCell {
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -56,7 +57,7 @@ final class FeedTableViewCell: UITableViewCell{
         label.textColor = .label
         label.font = .systemFont(ofSize: 13.0, weight: .medium)
         label.numberOfLines = 5
-        label.text = "홍길동님 외 999명이 좋아합니다."
+        label.text = "999명이 좋아합니다."
         
         return label
     }()
@@ -72,13 +73,12 @@ final class FeedTableViewCell: UITableViewCell{
     }()
     
     @objc func didTabLikeButton(){
+        //좋아요 색깔 바꾸기
         if likeButton.currentImage == UIImage(named: "heart") {
             self.likeButton.setImage(systemName: "heart.fill")
         }else{
             self.likeButton.setImage(systemName: "heart")
         }
-        
-        
         
     }
     

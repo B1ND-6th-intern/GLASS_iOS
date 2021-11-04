@@ -163,10 +163,10 @@ private extension SignInViewController{
         let logoOffset: CGFloat = 90.0
         
         GlassImageView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(235)
+            $0.top.equalToSuperview().offset(110)
             $0.leading.equalToSuperview().offset(logoOffset)
             $0.trailing.equalToSuperview().inset(logoOffset)
-            $0.bottom.equalTo(emailTextField.snp.top).offset(-80)
+            $0.bottom.equalTo(emailTextField.snp.top).offset(-135)
         }
         
         self.emailTextField.snp.makeConstraints {

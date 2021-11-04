@@ -106,28 +106,22 @@ private extension SelectJobViewController{
             GLASSImageView,
             ractangle,
             BtnStackView
-//            blueHalfView
             
         ] .forEach{ self.view.addSubview($0) }
         
         GLASSImageView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(240)
+            $0.top.equalToSuperview().offset(110)
             $0.leading.equalToSuperview().offset(90)
             $0.trailing.equalToSuperview().inset(90)
-            $0.bottom.equalToSuperview().inset(520)
+            $0.bottom.equalTo(BtnStackView.snp.top).offset(-100)
         }
-        
-//        blueHalfView.snp.makeConstraints{
-//            $0.leading.equalToSuperview()
-//            $0.trailing.equalToSuperview()
-//        }
         
         BtnStackView.snp.makeConstraints{
            $0.centerY.equalToSuperview()
-            $0.top.equalTo(GLASSImageView.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().inset(30)
-            $0.bottom.equalToSuperview().inset(330)
+            $0.width.equalTo(180)
+            $0.height.equalTo(145)
         }
         
         ractangle.snp.makeConstraints {
