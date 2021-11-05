@@ -119,43 +119,43 @@ private extension UploadViewContoller {
         
         
         // 이미지와 글, 해쉬태그 보내주는 코드
-        let upLoadUrl = "\(super.MainURL)/writings/upload"
-        var request = URLRequest(url: URL(string: upLoadUrl)!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let params = [
-            "text":"\(upLoadText!)",
-            "hashtags":"\(upLoadHash!)",
-            "imgs":"\(upLoadImageURL)"
-        ] as Dictionary
-        
-        do {
-            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-        } catch {
-            print("http Body Error")
-        }
-        
-        AF.request(request).responseData { (response) in
-            switch response.result {
-            case .success(let data):
-                print("POST 성공")
-                let decoder = JSONDecoder()
-                let result: Post? = try? decoder.decode(Post.self, from: data)
-                print(data)
-                
-                if result?.status == 200{
-                    
-                    
-                    
-                    self.dismiss(animated: true)
-                }
-                    
-            case .failure(let error):
-                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-                self.dismiss(animated: true)
-            }
-        }
+//        let upLoadUrl = "\(super.MainURL)/writings/upload"
+//        var request = URLRequest(url: URL(string: upLoadUrl)!)
+//        request.httpMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//
+//        let params = [
+//            "text":"\(upLoadText!)",
+//            "hashtags":"\(upLoadHash!)",
+//            "imgs":"\(upLoadImageURL)"
+//        ] as Dictionary
+//
+//        do {
+//            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+//        } catch {
+//            print("http Body Error")
+//        }
+//
+//        AF.request(request).responseData { (response) in
+//            switch response.result {
+//            case .success(let data):
+//                print("POST 성공")
+//                let decoder = JSONDecoder()
+//                let result: Post? = try? decoder.decode(Post.self, from: data)
+//                print(data)
+//
+//                if result?.status == 200{
+//
+//
+//
+//                    self.dismiss(animated: true)
+//                }
+//
+//            case .failure(let error):
+//                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+//                self.dismiss(animated: true)
+//            }
+//        }
     }
 
     func setupLayout(){
@@ -196,7 +196,7 @@ private extension UploadViewContoller {
         ]
         
         AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(image, withName: "image", fileName: "image.png", mimeType: "image/jpeg")
+            multipartFormData.append(image, withName: "img", fileName: "image.jpeg", mimeType: "image/jpeg")
         }, to: url, headers: headers1)
             .responseData { response in
                 switch response.result {
@@ -204,12 +204,6 @@ private extension UploadViewContoller {
                     print("POST 성공")
                     let decoder = JSONDecoder()
                     let result: Post? = try? decoder.decode(Post.self, from: data)
-                    print(data)
-                    print(" 헤더  \(headers1)")
-                    
-                    print(result?.status)
-                    print(result?.message)
-                    print(result?.error)
                     
                     if result?.status == 200{
                         self.dismiss(animated: true)

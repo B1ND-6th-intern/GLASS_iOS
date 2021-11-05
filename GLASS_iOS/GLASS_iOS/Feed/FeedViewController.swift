@@ -62,7 +62,7 @@ extension FeedViewController: UITableViewDataSource{
     }
 }
 
-extension FeedViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension FeedViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{          // 밑에 info에서 고른 사진의 형식, 이름을 이용한다.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var selectImage: UIImage?
         
