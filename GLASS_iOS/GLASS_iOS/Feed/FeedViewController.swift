@@ -8,8 +8,11 @@
 import SnapKit
 import UIKit
 import Alamofire
+import KeychainAccess
 
 class FeedViewController: MainURL {
+    
+    fileprivate let keychain = Keychain(service: "B1ND-6th.GLASS-iOS")
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -42,7 +45,26 @@ class FeedViewController: MainURL {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let upLoadUrl = "\(super.MainURL)/posts"
+        var request = URLRequest(url: URL(string: upLoadUrl)!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.headers = ["Authorization":("Bearer \(getToken()!)") ?? ""]
         
+        AF.request(request).responseData { (response) in
+            switch response.result{
+            case .success(let data):
+                
+                print("GET 성공")
+                let decoder = JSONDecoder()
+                let result = try? decoder.decode(HomeResponse.self, from: data)
+                
+                print(result?.writings)
+                
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+            }
+        }
         
     }
 }
@@ -55,6 +77,8 @@ extension FeedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell
         
+        let url = URL(string: "")
+        cell!.postImageView.kf.setImage(with: url, placeholder: UIImage(named: "GLASS_Small"))
         cell?.selectionStyle = .none
         cell?.setup()
         
@@ -84,6 +108,11 @@ extension FeedViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 private extension FeedViewController {
     
+    func getToken() -> String? {
+        guard let token = try? self.keychain.getString("token") else { return nil }
+        return token
+    }
+    
     func setupNavigationBar() {
         navigationItem.title  = "GLASS"
         
@@ -111,40 +140,6 @@ private extension FeedViewController {
     @objc func didTabUploadButton() {
         present(imagePickerController, animated: true)
     }
-    
-//    @objc func didTabLogoButton() {
-//
-//        let getPostUrl = "\(super.MainURL)"
-//        var dataSource: [Contact] = []
-//
-//        var request = URLRequest(url: URL(string: getPostUrl)!)
-//        request.httpMethod = "GET"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.timeoutInterval = 10
-//
-//        AF.request(request).responseData { (response) in
-//            switch response.result {
-//            case .success(let data):
-//                print("POST 성공")
-//
-//                do {
-//                    let result = try JSONDecoder().decode(Writings.self, from: data)
-//
-//                    self.tableView.dataSource = result.contacts
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//                }catch(let err){
-//                    print(err?.localizedDescription)
-//                }
-//
-//
-//            case .failure(let error):
-//                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-//            }
-//        }
-//
-//    }
     
     func setupTableView(){
         view.addSubview(tableView)
