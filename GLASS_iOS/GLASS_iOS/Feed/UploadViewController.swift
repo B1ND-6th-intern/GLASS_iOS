@@ -190,14 +190,14 @@ private extension UploadViewContoller {
     }
     
     func upload(image: Data, to url: String) {
-        let headers: HTTPHeaders = [
+        let headers1: HTTPHeaders = [
             "Content-type": "multipart/form-data",
-            "Token": getToken() ?? ""
+            "Authorization": ("Bearer \(getToken()!)") ?? ""
         ]
         
         AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(image, withName: "image", fileName: "image.png", mimeType: "image/jpeg")
-        }, to: url, headers: headers)
+        }, to: url, headers: headers1)
             .responseData { response in
                 switch response.result {
                 case .success(let data):
@@ -205,6 +205,7 @@ private extension UploadViewContoller {
                     let decoder = JSONDecoder()
                     let result: Post? = try? decoder.decode(Post.self, from: data)
                     print(data)
+                    print(" 헤더  \(headers1)")
                     
                     print(result?.status)
                     print(result?.message)
