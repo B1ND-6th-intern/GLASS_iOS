@@ -8,6 +8,7 @@
 import SnapKit
 import UIKit
 import Alamofire
+import Kingfisher
 import KeychainAccess
 
 final class UploadViewContoller: MainURL {
@@ -40,7 +41,7 @@ final class UploadViewContoller: MainURL {
     private lazy var hashtagTextField: UITextField = {
         let textfield = UITextField()
         textfield.textColor = .systemBlue
-        textfield.placeholder = "# 를 입력하세요! (해쉬테그는 ','로 구분됩니다.)"
+        textfield.placeholder = "# 를 입력하세요! (해쉬테그는 하나만 가능합니다.)"
         textfield.font = .systemFont(ofSize: 13.0, weight: .medium)
         textfield.borderStyle = .none
         
@@ -94,10 +95,10 @@ private extension UploadViewContoller {
         let upLoadImage = uploadImage
         let data = upLoadImage.jpegData(compressionQuality: 1)!
         
-        var temp = ""
-        let upLoadImageURL = temp
+        var resendImage: [String] = []
         let upLoadText = textView.text
         let upLoadHash = hashtagTextField.text
+        
         
         
         // 처음 이미지만 보내주는 코드
@@ -105,57 +106,70 @@ private extension UploadViewContoller {
         let uploadImageUrl = "\(super.MainURL)/writings/upload/imgs"
         let urlConvertible: Alamofire.URLConvertible = uploadImageUrl
         
-        var imageRequest = URLRequest(url: uploadImageUrl1)
-        imageRequest.httpMethod = "POST"
-        imageRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        imageRequest.setValue(getToken() ?? "", forHTTPHeaderField: "token")
-        imageRequest.timeoutInterval = 10
         
-//        sendImage(data!, url: urlConvertible)
-        print("토큰 값 \n", getToken() ?? "")
-        upload(image: data, to: uploadImageUrl)
-        
-        sleep(1)
-        
-        
-        // 이미지와 글, 해쉬태그 보내주는 코드
-//        let upLoadUrl = "\(super.MainURL)/writings/upload"
-//        var request = URLRequest(url: URL(string: upLoadUrl)!)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        let params = [
-//            "text":"\(upLoadText!)",
-//            "hashtags":"\(upLoadHash!)",
-//            "imgs":"\(upLoadImageURL)"
-//        ] as Dictionary
-//
-//        do {
-//            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
-//        } catch {
-//            print("http Body Error")
-//        }
-//
-//        AF.request(request).responseData { (response) in
-//            switch response.result {
-//            case .success(let data):
-//                print("POST 성공")
-//                let decoder = JSONDecoder()
-//                let result: Post? = try? decoder.decode(Post.self, from: data)
-//                print(data)
-//
-//                if result?.status == 200{
-//
-//
-//
-//                    self.dismiss(animated: true)
-//                }
-//
-//            case .failure(let error):
-//                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-//                self.dismiss(animated: true)
-//            }
-//        }
+            let headers1: HTTPHeaders = [
+                "Content-type": "multipart/form-data",
+                "Authorization": ("Bearer \(getToken()!)") ?? ""
+            ]
+            
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(data, withName: "img", fileName: "image.jpeg", mimeType: "image/jpeg")
+        }, to: uploadImageUrl, headers: headers1)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    print("POST 성공")
+                    let decoder = JSONDecoder()
+                    let result: ImagePost? = try? decoder.decode(ImagePost.self, from: data)
+                    
+                    if result?.status == 200 {
+                        resendImage = (result?.jsonUrl) ?? []
+                        
+                //         이미지와 글, 해쉬태그 보내주는 코드
+                        let upLoadUrl = "\(super.MainURL)/writings/upload"
+                        var request = URLRequest(url: URL(string: upLoadUrl)!)
+                        request.httpMethod = "POST"
+                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                        request.headers = ["Authorization":("Bearer \(self.getToken()!)") ?? ""]
+                        
+                        let params = [
+                            "text":"\(upLoadText!)",
+                            "hashtags":upLoadHash,
+                            "imgs": resendImage
+                        ] as Dictionary
+
+                        do {
+                            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+                        } catch {
+                            print("http Body Error")
+                        }
+
+                        AF.request(request).responseData { (response) in
+                            switch response.result {
+                            case .success(let data):
+                                print("POST 성공")
+                                let decoder = JSONDecoder()
+                                let result: Post? = try? decoder.decode(Post.self, from: data)
+                                print(data)
+
+                                if result?.status == 200{
+                                    self.dismiss(animated: true)
+                                }
+
+                            case .failure(let error):
+                                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                                self.dismiss(animated: true)
+                            }
+                        }
+                        
+                    }
+                case .failure(let error):
+                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                    self.dismiss(animated: true)
+                }
+                
+                
+            }
     }
 
     func setupLayout(){
@@ -188,61 +202,4 @@ private extension UploadViewContoller {
         guard let token = try? self.keychain.getString("token") else { return nil }
         return token
     }
-    
-    func upload(image: Data, to url: String) {
-        let headers1: HTTPHeaders = [
-            "Content-type": "multipart/form-data",
-            "Authorization": ("Bearer \(getToken()!)") ?? ""
-        ]
-        
-        AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(image, withName: "img", fileName: "image.jpeg", mimeType: "image/jpeg")
-        }, to: url, headers: headers1)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    print("POST 성공")
-                    let decoder = JSONDecoder()
-                    let result: Post? = try? decoder.decode(Post.self, from: data)
-                    
-                    if result?.status == 200{
-                        self.dismiss(animated: true)
-                    }else{
-                        self.dismiss(animated: true)
-                    }
-                    
-                case .failure(let error):
-                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-                    self.dismiss(animated: true)
-                }
-            }
-    }
 }
-
-//    func sendImage(_ image: Data, url: URLConvertible) {
-//        let header : HTTPHeaders = ["Content-type" : "multipart/form-data"]
-//        AF.upload(multipartFormData: {
-//            $0.append(image, withName: "thumbnail", fileName: "imgs.jpeg", mimeType: "image/jpeg")
-//        }, to: url, usingThreshold: UInt64.init(), method: .post ,headers: header)
-//            .responseData() { response in
-//                switch response.result {
-//                case .success(let data):
-//                    print("POST 성공")
-//                    let decoder = JSONDecoder()
-//                    let result: Post? = try? decoder.decode(Post.self, from: data)
-//                    print(data)
-//                    dump(result?.status)
-//
-//                    if result?.status == 200{
-//                        self.dismiss(animated: true)
-//                    }else{
-//                        self.dismiss(animated: true)
-//                    }
-//
-//                case .failure(let error):
-//                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
-//                    self.dismiss(animated: true)
-//                }
-//            }
-//
-//    }

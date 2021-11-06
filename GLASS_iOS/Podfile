@@ -13,5 +13,6 @@ target 'GLASS_iOS' do
   #Pods for KeyChain
   use_frameworks!
   pod 'KeychainAccess'
+  pod 'Kingfisher' 
 
 end

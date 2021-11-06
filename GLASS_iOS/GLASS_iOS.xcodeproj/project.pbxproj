@@ -467,6 +467,7 @@
 				DEVELOPMENT_TEAM = MA35V5PR3U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLASS_iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GLASS;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -495,6 +496,7 @@
 				DEVELOPMENT_TEAM = MA35V5PR3U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLASS_iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GLASS;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
