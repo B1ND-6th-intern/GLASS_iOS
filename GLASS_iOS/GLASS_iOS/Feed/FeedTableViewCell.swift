@@ -7,11 +7,12 @@
 
 import SnapKit
 import UIKit
+import Kingfisher
 import Alamofire
 
 final class FeedTableViewCell: UITableViewCell {
     
-    private lazy var profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .tertiaryLabel
         imageView.clipsToBounds = true
@@ -20,7 +21,7 @@ final class FeedTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var userNameLabel: UILabel = {
+    lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "UserName"
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
@@ -29,14 +30,14 @@ final class FeedTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var postImageView: UIImageView = {
+    lazy var postImageView: UIImageView = {
         let postImageView = UIImageView()
         postImageView.backgroundColor = .tertiaryLabel
         
         return postImageView
     }()
     
-    private lazy var likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let likeButton = UIButton(type: .system)
         likeButton.setImage(systemName: "heart")
         likeButton.addTarget(self, action: #selector(didTabLikeButton), for: .touchUpInside)
@@ -45,7 +46,7 @@ final class FeedTableViewCell: UITableViewCell {
         return likeButton
     }()
     
-    private lazy var currentLikedCountLabel: UILabel = {
+    lazy var currentLikedCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.font = .systemFont(ofSize: 13.0, weight: .medium)
@@ -55,7 +56,7 @@ final class FeedTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var contentsLabel: UILabel = {
+    lazy var contentsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 5
@@ -63,6 +64,16 @@ final class FeedTableViewCell: UITableViewCell {
         label.text = "이 글은 GLASS을 테스트 하는 글로 이 label안에 있는 글은 5줄 까지 되고요 또 이 안에 있는 글은 contentsLabel로써 글을 제목(?)을 나타내는 글 입니다."
         
         return label
+    }()
+    
+    lazy var hashTagLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemBlue
+        label.numberOfLines = 1
+        label.font = .systemFont(ofSize: 11.0, weight: .medium)
+        label.text = "해쉬테그"
+        
+       return label
     }()
     
     @objc func didTabLikeButton(){
@@ -88,11 +99,12 @@ final class FeedTableViewCell: UITableViewCell {
             likeButton,
             
             currentLikedCountLabel,
-            contentsLabel
+            contentsLabel,
+            hashTagLabel
         ].forEach{ addSubview($0) }
         
         profileImageView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(5.0)
+            $0.top.equalToSuperview().offset(20.0)
             $0.leading.equalToSuperview().offset(5.0)
             $0.bottom.equalTo(postImageView.snp.top).offset(-5.0)
             $0.width.equalTo(40.0)
@@ -113,7 +125,7 @@ final class FeedTableViewCell: UITableViewCell {
         }
         
         let buttonWidth: CGFloat = 24.0
-        let buttonInset: CGFloat = 16.0
+        let buttonInset: CGFloat = 12.0
 
         likeButton.snp.makeConstraints{
             $0.leading.equalToSuperview().inset(buttonInset)
@@ -123,9 +135,8 @@ final class FeedTableViewCell: UITableViewCell {
         }
         
         currentLikedCountLabel.snp.makeConstraints{
-            $0.leading.equalTo(likeButton.snp.leading)
-            $0.trailing.equalTo(postImageView.snp.trailing)
-            $0.top.equalTo(likeButton.snp.bottom).offset(14.0)
+            $0.leading.equalTo(likeButton.snp.trailing).offset(5)
+            $0.centerY.equalTo(likeButton.snp.centerY)
         }
         
         contentsLabel.snp.makeConstraints{
@@ -135,6 +146,14 @@ final class FeedTableViewCell: UITableViewCell {
             $0.bottom.equalToSuperview().inset(16.0)
 
         }
+        
+        hashTagLabel.snp.makeConstraints{
+            $0.leading.equalTo(likeButton.snp.leading)
+            $0.trailing.equalTo(postImageView.snp.trailing)
+            $0.top.equalTo(contentsLabel.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().offset(3)
+        }
+        
     }
     
 }

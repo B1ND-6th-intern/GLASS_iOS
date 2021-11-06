@@ -13,6 +13,7 @@ import KeychainAccess
 class FeedViewController: MainURL {
     
     fileprivate let keychain = Keychain(service: "B1ND-6th.GLASS-iOS")
+    fileprivate var Writings: [Writings] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -51,7 +52,7 @@ class FeedViewController: MainURL {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.headers = ["Authorization":("Bearer \(getToken()!)") ?? ""]
         
-        AF.request(request).responseData { (response) in
+        AF.request(request).responseData { [weak self] (response) in
             switch response.result{
             case .success(let data):
                 
@@ -59,8 +60,9 @@ class FeedViewController: MainURL {
                 let decoder = JSONDecoder()
                 let result = try? decoder.decode(HomeResponse.self, from: data)
                 
-                print(result?.writings)
+                self?.Writings = result?.writings ?? []
                 
+                self?.tableView.reloadData()
             case .failure(let error):
                 print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
             }
@@ -69,22 +71,50 @@ class FeedViewController: MainURL {
     }
 }
 
+// ldh165163@gmail.com
+// qwerty3907
+
+
 extension FeedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        print(Writings.count)
+        return self.Writings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell
         
-        let url = URL(string: "")
-        cell!.postImageView.kf.setImage(with: url, placeholder: UIImage(named: "GLASS_Small"))
+        // 이미지 넣어주기
+        let PostImageurl = URL(string: "\(super.MainURL)/uploads\(self.Writings[indexPath.row].imgs[0])")
+        cell!.postImageView.kf.setImage(with: PostImageurl, placeholder: UIImage(named: "GLASS_Small"))
+        
+        // profileImageView 넣어주기
+//        let ProfileImageUrl = URL(string: "\(super.MainURL)/upload\(self.Writings[indexPath.row].owner.avatar)")
+//        cell!.postImageView.kf.setImage(with: ProfileImageUrl, placeholder: UIImage(named: "GLASS_Small"))
+        
+        // userName 넣어주기
+        cell!.userNameLabel.text = "\(self.Writings[indexPath.row].owner.grade)\(self.Writings[indexPath.row].owner.classNumber)\(self.Writings[indexPath.row].owner.stuNumber)  \(self.Writings[indexPath.row].owner.name)"
+        
+        // currentLikedCountLabel 넣어주기
+        cell!.currentLikedCountLabel.text = "\(self.Writings[indexPath.row].likeCount)"
+        
+        // contentsLabel 넣어주기
+        cell!.contentsLabel.text = "\(self.Writings[indexPath.row].text!)"
+        
+        // hashTagLabel 넣어주기
+        cell!.hashTagLabel.text = "# \(String(describing: self.Writings[indexPath.row].hashtags[0]!))"
+        
+        
+        
         cell?.selectionStyle = .none
         cell?.setup()
         
         return cell ?? UITableViewCell()
     }
 }
+
+
+
 
 extension FeedViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{          // 밑에 info에서 고른 사진의 형식, 이름을 이용한다.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
