@@ -10,14 +10,15 @@ import SnapKit
 
 final class PopularTableViewCell: UITableViewCell{
     
-    private lazy var likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let button = UIButton()
         button.setImage(systemName: "heart")
+        button.addTarget(self, action: #selector(didTabLikeButton), for: .touchUpInside)
         
         return button
     }()
     
-    private lazy var likeButtonCount: UILabel = {
+    lazy var likeButtonCount: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
         label.textColor = .label
@@ -26,7 +27,7 @@ final class PopularTableViewCell: UITableViewCell{
         return label
     }()
     
-    private lazy var postImageView: UIImageView = {
+    lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
 //        imageView.image = 서버에서 받은 사진
         imageView.backgroundColor = .tertiaryLabel
@@ -34,14 +35,15 @@ final class PopularTableViewCell: UITableViewCell{
         return imageView
     }()
     
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "대소고에서의 삷이란..."  //서버에서 받은 타이틀
+        label.font = .systemFont(ofSize: 15.0, weight: .medium)
         
         return label
     }()
     
-    private lazy var tagLabel: UILabel = {
+    lazy var tagLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12.5, weight: .thin)
         label.textColor = .systemBlue
@@ -50,7 +52,7 @@ final class PopularTableViewCell: UITableViewCell{
         return label
     }()
     
-    private lazy var studentInformationLabel: UILabel = {
+    lazy var studentInformationLabel: UILabel = {
         let label = UILabel()
         label.text = "1206 김상은"  //서버에서 받은 학번이름
         label.font = .systemFont(ofSize: 13.5, weight: .medium)
@@ -58,7 +60,20 @@ final class PopularTableViewCell: UITableViewCell{
         return label
     }()
     
+    @objc func didTabLikeButton(){
+        //좋아요 색깔 바꾸기
+        if likeButton.currentImage == UIImage(systemName: "heart") {
+            self.likeButton.tintColor = .red
+            self.likeButton.setImage(systemName: "heart.fill")
+        }else{
+            self.likeButton.tintColor = .black
+            self.likeButton.setImage(systemName: "heart")
+        }
+    }
+    
     func setup(){
+        
+        self.contentView.alpha = 0
         
         let likeStackView = UIStackView(arrangedSubviews: [likeButton, likeButtonCount])
         likeStackView.axis = .vertical
@@ -77,7 +92,7 @@ final class PopularTableViewCell: UITableViewCell{
             studentInformationLabel
         ].forEach{ addSubview($0) }
         
-        let likeButtonSet: CGFloat = 17.0
+        let likeButtonSet: CGFloat = 14.0
         
         likeStackView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(likeButtonSet)
@@ -87,7 +102,7 @@ final class PopularTableViewCell: UITableViewCell{
         
         postImageView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(15)
-            $0.leading.equalTo(likeStackView.snp.trailing).offset(25)
+            $0.leading.equalTo(likeStackView.snp.trailing).offset(likeButtonSet)
             $0.bottom.equalToSuperview().offset(-15)
             $0.width.equalTo(80.0)
             $0.height.equalTo(80.0)
