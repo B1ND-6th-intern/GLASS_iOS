@@ -203,12 +203,11 @@ private extension PnTSignUpViewController{
             $0.top.equalToSuperview().offset(90)
             $0.leading.equalToSuperview().offset(logoOffset)
             $0.trailing.equalToSuperview().inset(logoOffset)
-            $0.bottom.equalTo(emailTextfield.snp.top).offset(-80)
+            $0.bottom.equalTo(emailTextfield.snp.top).offset(-40)
         }
         
         emailTextfield.snp.makeConstraints{
-//            $0.top.equalTo(GLASSLogoImageView.snp.bottom).offset(inputsSet)
-            $0.top.equalToSuperview().offset(220)
+            $0.top.equalToSuperview().offset(180)
             $0.leading.equalToSuperview().offset(textFieldSet)
             $0.trailing.equalToSuperview().inset(textFieldSet)
         }
@@ -232,17 +231,17 @@ private extension PnTSignUpViewController{
         }
         
         agreeImformationStackView.snp.makeConstraints{
-            $0.top.equalTo(nameTextfield.snp.bottom).offset(135)
             $0.leading.equalTo(nameTextfield.snp.leading)
+            $0.bottom.equalTo(signUpButton.snp.top).offset(-20)
         }
         
         let signUpButtonSet: CGFloat = 120
         
         signUpButton.snp.makeConstraints{
-            $0.top.equalTo(agreeImformationStackView.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
             $0.leading.equalTo(view.snp.leading).offset(signUpButtonSet)
             $0.trailing.equalTo(view.snp.trailing).inset(signUpButtonSet)
+            $0.bottom.equalToSuperview().offset(-30)
         }
         
     }
