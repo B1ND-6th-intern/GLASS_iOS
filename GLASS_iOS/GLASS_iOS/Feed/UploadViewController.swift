@@ -102,10 +102,8 @@ private extension UploadViewContoller {
         
         
         // 처음 이미지만 보내주는 코드
-        let uploadImageUrl1: URL = URL(string: "\(super.MainURL)/writings/upload/imgs")!
         let uploadImageUrl = "\(super.MainURL)/writings/upload/imgs"
         let urlConvertible: Alamofire.URLConvertible = uploadImageUrl
-        
         
             let headers1: HTTPHeaders = [
                 "Content-type": "multipart/form-data",
@@ -149,10 +147,12 @@ private extension UploadViewContoller {
                             case .success(let data):
                                 print("POST 성공")
                                 let decoder = JSONDecoder()
-                                let result: Post? = try? decoder.decode(Post.self, from: data)
+                                let result1: Post? = try? decoder.decode(Post.self, from: data)
                                 print(data)
 
-                                if result?.status == 200{
+                                if result1?.status == 200 {
+                                    self.dismiss(animated: true)
+                                }else if result?.status == 204 {
                                     self.dismiss(animated: true)
                                 }
 

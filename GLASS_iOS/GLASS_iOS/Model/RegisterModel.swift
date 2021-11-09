@@ -267,3 +267,19 @@ struct UserInfo: Codable{
         self.permission = permission
     }
 }
+struct User: Codable{
+    var user: UserInfo = UserInfo()
+}
+
+struct EditProfile: Codable{
+    var status: Int
+    var error: String?
+    var message: String?
+}
+
+struct EditImage: Codable{
+    var newavatar: String
+    var error: String?
+    var message: String?
+    var status: Int
+}

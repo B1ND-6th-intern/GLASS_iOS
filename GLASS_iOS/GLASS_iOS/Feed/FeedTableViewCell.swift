@@ -14,7 +14,6 @@ final class FeedTableViewCell: UITableViewCell {
     
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .tertiaryLabel
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
         
@@ -81,11 +80,11 @@ final class FeedTableViewCell: UITableViewCell {
         if likeButton.currentImage == UIImage(systemName: "heart") {
             self.likeButton.tintColor = .red
             self.likeButton.setImage(systemName: "heart.fill")
+            self.currentLikedCountLabel
         }else{
             self.likeButton.tintColor = .black
             self.likeButton.setImage(systemName: "heart")
         }
-        
     }
     
     func setup(){

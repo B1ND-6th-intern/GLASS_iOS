@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 class MainURL: UIViewController {
-    let MainURL = "http://10.80.162.123:8080"
+    let MainURL = "http://192.168.98.202:8080"
 }

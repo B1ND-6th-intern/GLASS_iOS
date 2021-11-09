@@ -71,13 +71,9 @@ class FeedViewController: MainURL {
     }
 }
 
-// ldh165163@gmail.com
-// qwerty3907
-
 
 extension FeedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(Writings.count)
         return self.Writings.count
     }
     
@@ -85,12 +81,12 @@ extension FeedViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell
         
         // 이미지 넣어주기
-        let PostImageurl = URL(string: "\(super.MainURL)/uploads\(self.Writings[indexPath.row].imgs[0])")
-        cell!.postImageView.kf.setImage(with: PostImageurl, placeholder: UIImage(named: "GLASS_Small"))
+        let postImageURL = URL(string: "\(super.MainURL)/uploads\(self.Writings[indexPath.row].imgs[0])")
+        cell!.postImageView.kf.setImage(with: postImageURL, placeholder: UIImage(named: "GLASS_Small"))
         
-        // profileImageView 넣어주기
-//        let ProfileImageUrl = URL(string: "\(super.MainURL)/upload\(self.Writings[indexPath.row].owner.avatar)")
-//        cell!.postImageView.kf.setImage(with: ProfileImageUrl, placeholder: UIImage(named: "GLASS_Small"))
+        //userprofileImageView 넣어주기
+        let profileImageURL = URL(string: "\(super.MainURL)/uploads\(self.Writings[indexPath.row].owner.avatar)")
+        cell!.profileImageView.kf.setImage(with: profileImageURL, placeholder: UIImage(named: "userImage"))
         
         // userName 넣어주기
         cell!.userNameLabel.text = "\(self.Writings[indexPath.row].owner.grade)\(self.Writings[indexPath.row].owner.classNumber)\(self.Writings[indexPath.row].owner.stuNumber)  \(self.Writings[indexPath.row].owner.name)"
@@ -103,8 +99,6 @@ extension FeedViewController: UITableViewDataSource{
         
         // hashTagLabel 넣어주기
         cell!.hashTagLabel.text = "# \(String(describing: self.Writings[indexPath.row].hashtags[0]!))"
-        
-        
         
         cell?.selectionStyle = .none
         cell?.setup()
@@ -144,7 +138,6 @@ private extension FeedViewController {
     }
     
     func setupNavigationBar() {
-        navigationItem.title  = "GLASS"
         
         let uploadButton = UIBarButtonItem(
             image: UIImage(systemName: "plus.app"),
@@ -158,8 +151,9 @@ private extension FeedViewController {
             image: UIImage(named: "GLASS_Small"),
             style: .plain,
             target: nil,
-            action: nil//#selector(didTabLogoButton)
+            action: nil
         )
+        
         logobutton.tintColor = UIColor(named: "Color")
         logobutton.width = 20
         

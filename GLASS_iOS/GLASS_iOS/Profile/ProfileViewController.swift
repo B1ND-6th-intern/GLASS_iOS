@@ -19,8 +19,9 @@ final class ProfileViewController: MainURL{
     lazy var profileImageView: UIImageView  = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 40.0
-        imageView.layer.borderWidth = 1
+        imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.quaternaryLabel.cgColor
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -35,7 +36,6 @@ final class ProfileViewController: MainURL{
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "안녕하세요."
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
         label.numberOfLines = 0
         
@@ -250,8 +250,6 @@ private extension ProfileViewController{
     }
     
     func setUpLayout() {
-        
-//        print("name : \(self.ProfileInfo.user.name)")
         
         self.nameLabel.text = ProfileInfo.user.name
         self.descriptionLabel.text = ProfileInfo.user.introduction

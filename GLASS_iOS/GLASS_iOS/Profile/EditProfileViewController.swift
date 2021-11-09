@@ -8,8 +8,14 @@
 import UIKit
 import PhotosUI
 import SnapKit
+import Alamofire
+import Kingfisher
+import KeychainAccess
 
 class EditProfileViewController: MainURL{
+    
+    fileprivate let keychain = Keychain(service: "B1ND-6th.GLASS-iOS")
+    var ProfileInfo: User = User()
 
     private lazy var ProfileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -43,7 +49,7 @@ class EditProfileViewController: MainURL{
     
     private lazy var editNameTextField: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "김상은" // 서버에서 받은 userName
+        textfield.placeholder = "???" // 서버에서 받은 userName
         textfield.borderStyle = .none
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         
@@ -60,7 +66,7 @@ class EditProfileViewController: MainURL{
     
     private lazy var editIntroduceTextField: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "안녕하세요 1학년 2반 김상은입니다." // 서버에서 받은 Introduce
+        textfield.placeholder = "안녕하세요 ?학년 ?반 ???입니다."
         textfield.borderStyle = .none
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
         
@@ -90,7 +96,7 @@ class EditProfileViewController: MainURL{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
+        setupView()
     }
 }
 
@@ -111,6 +117,10 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
 }
 
 private extension EditProfileViewController {
+    func getToken() -> String? {
+        guard let token = try? self.keychain.getString("token") else { return nil }
+        return token
+    }
     
     @objc func didTabeditProfileImageButton(){
         present(imagePickerController, animated: true)
@@ -119,11 +129,107 @@ private extension EditProfileViewController {
     @objc func didTabDoneButton(){
         self.dismiss(animated: true)
         
+//        let Profileimg = ProfileImageView.image
+        
         //서버로 바뀐 이름, 소개, 프로필, 이미지 값 보내주기
+        let userInfoUrl = "\(super.MainURL)/users/edit"
+        var request = URLRequest(url: URL(string: userInfoUrl)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.headers = ["Authorization":("Bearer \(self.getToken()!)") ?? ""]
+        request.timeoutInterval = 10
+
+        let name = editNameTextField.text
+        let introduce = editIntroduceTextField.text
+
+        let params = [
+            "name":"\(name!)",
+            "introduction":"\(introduce!)"
+        ] as Dictionary
+
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+        } catch {
+            print("http Body Error")
+        }
+
+        AF.request(request).responseData { (response) in
+            
+            switch response.result {
+            case .success(let data):
+                print("POST 성공")
+                let decoder = JSONDecoder()
+                let result = try? decoder.decode(EditProfile.self, from: data)
+
+                print(data)
+
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+            }
+        }
+        
+        
+//        let userImagUrl = "\(super.MainURL)/users/edit/avatar"
+//        var request1 = URLRequest(url: URL(string: userImagUrl)!)
+//        request1.headers = ["Authorization":("Bearer \(self.getToken()!)") ?? ""]
+//        request1.httpMethod = "POST"
+//        request1.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request1.timeoutInterval = 10
+//
+//        let params1 = ["img":"\(ProfileImageView.image)"] as Dictionary
+//
+//        do {
+//            try request1.httpBody = JSONSerialization.data(withJSONObject: params1, options: [])
+//        } catch{
+//            print("http Body Error")
+//        }
+//        AF.request(request1).responseData { (response1) in
+//            switch response1.result{
+//            case .success(let data12):
+//                print("POST 성공")
+//                let decoder1 = JSONDecoder()
+//                let result1 = try? decoder1.decode(EditImage.self, from: data12)
+//
+//                print(data12)
+//            case .failure(let error):
+//                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+//            }
+//        }
+        
+        let userImagUrl = "\(super.MainURL)/users/edit/avatar"
+        let headers1: HTTPHeaders = [
+            "Content-type": "multipart/form-data",
+            "Authorization": ("Bearer \(getToken()!)") ?? ""
+        ]
+        let data = ProfileImageView.image!.jpegData(compressionQuality: 1)!
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(data, withName: "img", fileName: "image.jpeg", mimeType: "image/jpeg")
+        }, to: userImagUrl, headers: headers1)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    print("POST 성공")
+                    let decoder = JSONDecoder()
+                    let result = try? decoder.decode(EditProfile.self, from: data)
+                    
+                case .failure(let error):
+                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                    self.dismiss(animated: true)
+                }
+                
+                
+            }
+        
         
     }
     
-    func setup(){
+    func setupView(){
+        
+        self.editNameTextField.placeholder = ProfileInfo.user.name
+        self.editIntroduceTextField.placeholder = ProfileInfo.user.introduction
+        let ProfileImg = URL(string: "\(super.MainURL)/uploads\(self.ProfileInfo.user.avatar)")
+        ProfileImageView.kf.setImage(with: ProfileImg, placeholder: UIImage(named: "userImage"))
         
         self.view.backgroundColor = .systemBackground
         

@@ -76,10 +76,6 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource{
         let PostImageurl = URL(string: "\(super.MainURL)/uploads\(self.Writings2[indexPath.row].imgs[0])")
         cell!.postImageView.kf.setImage(with: PostImageurl, placeholder: UIImage(named: "GLASS_Small"))
         
-        // profileImageView 넣어주기
-//        let ProfileImageUrl = URL(string: "\(super.MainURL)/upload\(self.Writings2[indexPath.row].owner.avatar)")
-//        cell!.postImageView.kf.setImage(with: ProfileImageUrl, placeholder: UIImage(named: "GLASS_Small"))
-        
         // studentInformationLabel 넣어주기
         cell!.studentInformationLabel.text = "\(self.Writings2[indexPath.row].owner.grade)\(self.Writings2[indexPath.row].owner.classNumber)\(self.Writings2[indexPath.row].owner.stuNumber)  \(self.Writings2[indexPath.row].owner.name)"
         
