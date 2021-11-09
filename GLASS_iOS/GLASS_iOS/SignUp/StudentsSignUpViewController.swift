@@ -196,6 +196,7 @@ private extension StudentsSignUpViewController{
                 print("POST 성공")
                 let decoder = JSONDecoder()
                 let result: Register? = try? decoder.decode(Register.self, from: data)
+                
                 print(data)
                 
                 if result?.status == 200{

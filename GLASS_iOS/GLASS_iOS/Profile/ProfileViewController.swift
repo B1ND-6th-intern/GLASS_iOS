@@ -7,10 +7,16 @@
 
 import UIKit
 import SnapKit
+import KeychainAccess
+import Alamofire
+import Kingfisher
 
 final class ProfileViewController: MainURL{
     
-    private lazy var profileImageView: UIImageView  = {
+    fileprivate let keychain = Keychain(service: "B1ND-6th.GLASS-iOS")
+    fileprivate var ProfileInfo: User = User()
+    
+    lazy var profileImageView: UIImageView  = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 40.0
         imageView.layer.borderWidth = 1
@@ -19,7 +25,7 @@ final class ProfileViewController: MainURL{
         return imageView
     }()
     
-    private lazy var nameLabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "UserName"
         label.font = .systemFont(ofSize: 14.0, weight: .semibold)
@@ -27,7 +33,7 @@ final class ProfileViewController: MainURL{
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "안녕하세요."
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
@@ -36,7 +42,7 @@ final class ProfileViewController: MainURL{
         return label
     }()
 
-    private lazy var EditProfileButton: UIButton = {
+    lazy var EditProfileButton: UIButton = {
         let button = UIButton()
         button.setTitle("프로필 변경", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -67,6 +73,36 @@ final class ProfileViewController: MainURL{
         return collectionView
     }()
     
+    private lazy var postLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14.0, weight: .medium)
+        label.text = "게시물"
+        
+        return label
+    }()
+    private lazy var infoLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14.0, weight: .medium)
+        label.text = "학반번호"
+        
+        return label
+    }()
+    
+    private lazy var postCount: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16.0, weight: .bold)
+        label.text = "0"
+        
+        return label
+    }()
+    private lazy var infoCount: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16.0, weight: .bold)
+        label.text = "1206"
+        
+        return label
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,18 +111,81 @@ final class ProfileViewController: MainURL{
         setUpLayout()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //id를 받아오는 GET
+        let getIdUrl = "\(super.MainURL)/users/user-id"
+        var request = URLRequest(url: URL(string: getIdUrl)!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.headers = ["Authorization":("Bearer \(getToken()!)") ?? ""]
+        
+        // id를 통해서 게시물들의 정보를 받아오는 GET
+        var getInfoUrl = "\(super.MainURL)/users/"
+        var requestInfo = URLRequest(url: URL(string: getInfoUrl)!)
+        requestInfo.httpMethod = "GET"
+        requestInfo.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        requestInfo.headers = ["Authorization":("Bearer \(getToken()!)") ?? ""]
+        
+        AF.request(request).responseData { (response) in
+            switch response.result{
+            case .success(let data):
+                
+                print("GET 성공")
+                let decoder = JSONDecoder()
+                let result = try? decoder.decode(_id.self, from: data)
+                
+                //----------------------------------------------------------------------------
+                let userId = result?.id
+                let getInfoUrl = "\(super.MainURL)/users/\(userId!)"
+                var requestInfo = URLRequest(url: URL(string: getInfoUrl)!)
+                requestInfo.httpMethod = "GET"
+                requestInfo.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                requestInfo.headers = ["Authorization":("Bearer \(self.getToken()!)") ?? ""]
+                    
+                AF.request(requestInfo).responseData { [weak self] (responseInfo) in
+                    switch responseInfo.result{
+                    case .success(let dataInfo):
+                        print("GET 성공")
+                        let decoder = JSONDecoder()
+                        let result = try? decoder.decode(User.self, from: dataInfo)
+                        
+                        self?.ProfileInfo = result ?? User()
+                        self?.collectionView.reloadData()
+                        
+                        self?.setUpLayout()
+                        
+                    case .failure(let errorInfo):
+                        print("🚫 Alamofire Request Error\nCode:\(errorInfo._code), Message: \(errorInfo.errorDescription!)")
+                    }
+                }
+                //-----------------------------------------------------------------------------
+            case .failure(let error):
+                print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+            }
+        }
+        
+    }
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("sfd \(ProfileInfo.user.writings.count)")
+    
+        return self.ProfileInfo.user.writings.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionViewCell", for: indexPath) as? ProfileCollectionViewCell
+        
+        let PostImgsUrl = URL(string: "\(super.MainURL)/uploads\(self.ProfileInfo.user.writings[indexPath.row].imgs[0])")
+        cell!.imageView.kf.setImage(with: PostImgsUrl, placeholder: nil)
         
         cell?.setup(with: UIImage())
         
         return cell ?? UICollectionViewCell()
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
     }
 }
 
@@ -99,8 +198,20 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
 }
 
 private extension ProfileViewController{
+    
+    func getToken() -> String? {
+        guard let token = try? self.keychain.getString("token") else { return nil }
+        return token
+    }
+    
     func setUpNavigationItem() {
-        navigationItem.title = "UserName"
+        
+        let logobutton = UIBarButtonItem(
+            image: UIImage(named: "GLASS_Small"),
+            style: .plain,
+            target: nil,
+            action: nil
+        )
         
         let rightBarButton = UIBarButtonItem(
             image: UIImage(systemName: "ellipsis"),
@@ -108,7 +219,12 @@ private extension ProfileViewController{
             target: self,
             action: #selector(didTabRightBarButtonItem)
         )
+        
+        logobutton.tintColor = UIColor(named: "Color")
+        logobutton.width = 20
+        
         navigationItem.rightBarButtonItem = rightBarButton
+        navigationItem.leftBarButtonItem = logobutton
     }
     
     @objc func didTabRightBarButtonItem(){
@@ -126,13 +242,35 @@ private extension ProfileViewController{
     }
     
     @objc func didTabEditProfileButton(){
-        let editProfile = UINavigationController(rootViewController: EditProfileViewController())
+        let view = EditProfileViewController()
+        view.ProfileInfo = ProfileInfo
+        let editProfile = UINavigationController(rootViewController: view)
+        
         present(editProfile, animated: true)
     }
     
     func setUpLayout() {
         
-        let dataStackView = UIStackView(arrangedSubviews: [ studentInformationDataView, photoDataView])
+//        print("name : \(self.ProfileInfo.user.name)")
+        
+        self.nameLabel.text = ProfileInfo.user.name
+        self.descriptionLabel.text = ProfileInfo.user.introduction
+        self.postCount.text = "\(ProfileInfo.user.writings.count)"
+        self.infoCount.text = "\(ProfileInfo.user.grade)\(ProfileInfo.user.classNumber)\(ProfileInfo.user.stuNumber)"
+        let profileImageUrl = URL(string: "\(super.MainURL)/uploads\(self.ProfileInfo.user.avatar)")
+        profileImageView.kf.setImage(with: profileImageUrl, placeholder: UIImage(named: "userImage"))
+        
+        let infoStackView = UIStackView(arrangedSubviews: [infoCount, infoLabel])
+        infoStackView.axis = .vertical
+        infoStackView.alignment = .center
+        infoStackView.spacing = 4.0
+        
+        let postStackView = UIStackView(arrangedSubviews: [postCount, postLabel])
+        postStackView.axis = .vertical
+        postStackView.alignment = .center
+        postStackView.spacing = 4.0
+        
+        let dataStackView = UIStackView(arrangedSubviews: [ postStackView, infoStackView])
         dataStackView.spacing = 4.0
         dataStackView.distribution = .fillEqually
         
@@ -157,7 +295,7 @@ private extension ProfileViewController{
             $0.leading.equalTo(profileImageView.snp.trailing).offset(inset)
             $0.trailing.equalToSuperview().inset(inset)
             $0.centerY.equalTo(profileImageView.snp.centerY)
-            
+
         }
         
         nameLabel.snp.makeConstraints{
