@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 class MainURL: UIViewController {
-    let MainURL = "http://192.168.98.202:8080"
+    let MainURL = "http://api.glass.b1nd.com"
 }

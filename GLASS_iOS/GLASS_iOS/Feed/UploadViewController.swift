@@ -24,6 +24,8 @@ final class UploadViewContoller: MainURL {
         textView.textColor = .secondaryLabel
         textView.font = .systemFont(ofSize: 15.0)
         textView.delegate = self
+        textView.autocorrectionType = .no
+        textView.autocapitalizationType = .none
         
         return textView
     }()
@@ -44,6 +46,8 @@ final class UploadViewContoller: MainURL {
         textfield.placeholder = "# 를 입력하세요! (해쉬테그는 하나만 가능합니다.)"
         textfield.font = .systemFont(ofSize: 13.0, weight: .medium)
         textfield.borderStyle = .none
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -57,6 +61,11 @@ final class UploadViewContoller: MainURL {
         setupLayout()
         
         imageView.image = uploadImage
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
     }
 }
 

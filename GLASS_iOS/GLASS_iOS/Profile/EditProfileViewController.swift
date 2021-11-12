@@ -52,6 +52,8 @@ class EditProfileViewController: MainURL{
         textfield.placeholder = "???" // 서버에서 받은 userName
         textfield.borderStyle = .none
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -69,6 +71,8 @@ class EditProfileViewController: MainURL{
         textfield.placeholder = "안녕하세요 ?학년 ?반 ???입니다."
         textfield.borderStyle = .none
         textfield.font = .systemFont(ofSize: 14.0, weight: .medium)
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         
         return textfield
     }()
@@ -97,6 +101,11 @@ class EditProfileViewController: MainURL{
         super.viewDidLoad()
         
         setupView()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
     }
 }
 
