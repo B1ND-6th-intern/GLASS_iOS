@@ -152,6 +152,7 @@ private extension SignInViewController{
     }
     
     @objc func didTabmoveToSignUpButton() {
+        print("성공")
         let rootVC = SelectJobViewController()
         navigationController?.pushViewController(rootVC, animated: true)
     }

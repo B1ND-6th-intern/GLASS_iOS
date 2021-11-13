@@ -11,3 +11,5 @@ import UIKit
 class MainURL: UIViewController {
     let MainURL = "http://api.glass.b1nd.com"
 }
+
+//192.168.0.114:8080
