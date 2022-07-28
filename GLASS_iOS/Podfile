@@ -7,12 +7,9 @@ target 'GLASS_iOS' do
 
   # Pods for GLASS_iOS
 
-  #Pods for Using Alamofire
   pod 'Alamofire', '~> 5.4'
-
-  #Pods for KeyChain
-  use_frameworks!
   pod 'KeychainAccess'
   pod 'Kingfisher' 
+  pod 'SnapKit'
 
 end
